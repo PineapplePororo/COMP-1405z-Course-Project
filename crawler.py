@@ -1,38 +1,47 @@
 import webdev
 
-dict = {}
-queue = []
+
 
 def crawl(seed):
-    help_crawl(seed)
+    # keeps track of the pages visited (used for runtime efficiency)
+    dict = {}
+    # 
+    queue = []
+    # keeps track of the number of total pages found
+    count = 0
 
-def help_crawl(url):
-    pass
+    url = seed 
+    
+    while (len(queue) != 0):
 
-def queueHandling(url):
+        # extract pp
+        # extract url
 
-    global dict
-    global queue
-
-    if url not in dict:
+        # adding to queue 
+        # check if the url isn't in queue 
+        if url not in dict:
         
-        # make a new key with a value of 1
-        dict[url] = 1
+            # make a new key of the url
+            dict[url] = 0
+
+            # add to end of queue
+            queue.append(url)
+
+            # increment count for all succeed crawls
+            count += 1
 
 
-        # pass it to help_crawl
 
 
 
 
 
+    return count 
 
-    
-	
 
-    
 
-# main
+
+
 # print(webdev.read_url("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"))
 
 
