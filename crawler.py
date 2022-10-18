@@ -19,7 +19,7 @@ def crawl(seed):
         #adding the text to a words array by splitting the url read by each empty space/newline
         page = webdev.read_url(currURL.split())
 
-        #now we have to go throught hte page contents 
+        #now we have to go throught the page contents 
         #separate them based on tags (p tag or a tag to get text or links respectively)
         #get the words and put them in a array or file or smthn
         #get the links and enqueue them
