@@ -10,9 +10,8 @@ def crawl(seed):
     # keeps track of the number of total pages found
     count = 0
 
-    # check if the main folder that will contain all the data is made
-    # if not, create
-    createFolder()
+    # check if the main folder that will store all the information is made and empty
+    manageFolder()
 
     url = seed 
 
@@ -41,11 +40,22 @@ def crawl(seed):
 
     return count 
 
-# checks if the main folder that will have all the folders from crawl is made 
-def createFolder():
+# checks if the main folder that will have all the folders from crawl is made and empty
+# void method
+def manageFolder():
     # create a folder that will contain all the folders from the crawl
     if os.path.exists("crawl"):
-        print("folder exists")
+        # if it's created already, check if there are files in the folder
+        dirs = os.listdir("crawl")
+
+        # loop for all the subfolders in the crawl folder
+        for dir in dirs:
+            # loop for all the files in subfolder
+            for file in dir:
+                # remove every file
+                os.remove(os.path.join(dir, file))
+            # remove the subfolder
+            os.rmdir(dir)
     else:
         # if there isn't, make a new folder 
         os.makedirs("crawl")
@@ -70,12 +80,6 @@ def createFolderFiles(currentFile):
         urlPath = os.path.join(currentFile, "urls")
 
     return wordPath, urlPath
-
-
-
-    
-
-    
 
 
 
