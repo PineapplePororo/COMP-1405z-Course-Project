@@ -34,9 +34,6 @@ def manageFolder():
 # returns the word file path and url file path so that it could be used in crawl(seed)
 def createFiles(currentFile):
 
-    # check for any #\/:*?"<>|" and replace them with spaces as they aren't allowed to be in a folder
-    currentFile = currentFile.replace("\\", " ").replace('/', " ").replace(':', " ").replace('*', " ").replace('?', " ").replace('\"', " ").replace('<', " ").replace('>', " ").replace('|', " ")
-
     # store path for the subfolder of the current file
     filePath = os.path.join('crawl', currentFile)
 
@@ -67,89 +64,93 @@ def createFiles(currentFile):
 def crawl(seed):
 
     # keeps track of the pages visited (used for runtime efficiency)
-    dict = {}
+    # it has a url of seed at first
+    dict = {seed:1}
     # keeps track of urls that have been yet to be parsed through
+    # it has a url of seed at first
     queue = [seed]
-    # keeps track of the number of total pages found
-    count = 0
+    # keeps track of the number of total pages found & folder name of the specific url
+    count = 1
 
     # check if the main folder that will store all the information is made and empty
     manageFolder()
 
-    while (len(queue) != 0):
+    while (len(queue) > 0):
 
+        # get the next url to parse through
         url = queue.pop()
-
-        #finding the abosolute url by finding the last "/" and saving its index
-        end = 0
-        for i in range(len(url) - 1, -1, -1):
-
-            if(url[i] == "/"):
-                end = i
-                break
-        
-        #saving the absolute url by makign it a substring of the current url from its start until the last "/"
-        absoluteUrl = url[0:end]
-
+    
         # create folder and files for the url
-        wordFile, urlFile = createFiles(url[7:])
-        # page = webdev.read_url(url)
+        wordFile, urlFile = createFiles(str(dict[url]))
+
+        # #finding the abosolute url by finding the last "/" and saving its index
+        # end = 0
+        # for i in range(len(url) - 1, -1, -1):
+
+        #     if(url[i] == "/"):
+        #         end = i
+        #         break
+
+        # #saving the absolute url by makign it a substring of the current url from its start until the last "/"
+        # absoluteUrl = url[0:end]
+
+        # # page = webdev.read_url(url)
         
-        words = ""
-        urls = ""
+        # words = ""
+        # urls = ""
 
-        while page.find("<p>") != -1:
+        # while page.find("<p>") != -1:
 
-            start = page.find("<p>") + 3
-            end = page.find("</p>")
+        #     start = page.find("<p>") + 3
+        #     end = page.find("</p>")
 
-            words += page[start:end].split()
+        #     words += page[start:end].split()
 
-            page = page.replace("<p>", "", 1)
-            page = page.replace("</p>", "", 1)
+        #     page = page.replace("<p>", "", 1)
+        #     page = page.replace("</p>", "", 1)
 
-        while page.find("</a>") != -1:
+        # while page.find("</a>") != -1:
             
-            start = page.find('<a href="') + 9
-            end = page.find('.html">') + 5
+        #     start = page.find('<a href="') + 9
+        #     end = page.find('.html">') + 5
 
-            urls += page[start:end] + " "
+        #     urls += page[start:end] + " "
 
-            page = page.replace('href="', "", 1)
-            page = page.replace('.html">', "", 1)
-            page = page.replace('</a>', "", 1)
+        #     page = page.replace('href="', "", 1)
+        #     page = page.replace('.html">', "", 1)
+        #     page = page.replace('</a>', "", 1)
 
-        words = words.split()
-        urls = urls.split()
+        # words = words.split()
+        # urls = urls.split()
 
-        fileOut = open(wordFile, "r")
+        # fileOut = open(wordFile, "r")
 
-        for word in words:
-            fileOut.write(word)
+        # for word in words:
+        #     fileOut.write(word)
         
-        fileOut.close()
+        # fileOut.close()
 
-        fileOut = open(urlFile, "r")
+        # fileOut = open(urlFile, "r")
 
-        for url in urls:
-            if(url[0] == "."):
-                fileOut.write(absoluteUrl + url[1:len(url) - 1])
-            else:
-                fileOut.write(url)
+        # for url in urls:
+        #     if(url[0] == "."):
+        #         fileOut.write(absoluteUrl + url[1:len(url) - 1])
+        #     else:
+        #         fileOut.write(url)
                 
 
-        # adding to queue 
-        # check if the url isn't in queue 
-        if url not in dict:
-        
-            # make a new key of the url
-            dict[url] = 0
+        # # adding to queue 
+        # # check if the url isn't in queue 
+        # if url not in dict:
+            
+        #     # increment count for all succeed crawls
+        #     count += 1
 
-            # add to end of queue
-            queue.append(url)
+        #     # make a new key of the url
+        #     dict[url] = count
 
-            # increment count for all succeed crawls
-            count += 1
+        #     # add to end of queue
+        #     queue.append(url)
 
     return count 
 
