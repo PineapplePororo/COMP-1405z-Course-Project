@@ -83,74 +83,74 @@ def crawl(seed):
         # create folder and files for the url
         wordFile, urlFile = createFiles(str(dict[url]))
 
-        # #finding the abosolute url by finding the last "/" and saving its index
-        # end = 0
-        # for i in range(len(url) - 1, -1, -1):
+        #finding the abosolute url by finding the last "/" and saving its index
+        end = 0
+        for i in range(len(url) - 1, -1, -1):
 
-        #     if(url[i] == "/"):
-        #         end = i
-        #         break
+            if(url[i] == "/"):
+                end = i
+                break
 
-        # #saving the absolute url by makign it a substring of the current url from its start until the last "/"
-        # absoluteUrl = url[0:end]
+        #saving the absolute url by makign it a substring of the current url from its start until the last "/"
+        absoluteUrl = url[0:end]
 
-        # # page = webdev.read_url(url)
+        page = webdev.read_url(url)
         
-        # words = ""
-        # urls = ""
+        words = ""
+        urls = ""
 
-        # while page.find("<p>") != -1:
+        while page.find("<p>") != -1:
 
-        #     start = page.find("<p>") + 3
-        #     end = page.find("</p>")
+            start = page.find("<p>") + 3
+            end = page.find("</p>")
 
-        #     words += page[start:end].split()
+            words += page[start:end]
 
-        #     page = page.replace("<p>", "", 1)
-        #     page = page.replace("</p>", "", 1)
+            page = page.replace("<p>", "", 1)
+            page = page.replace("</p>", "", 1)
 
-        # while page.find("</a>") != -1:
+        while page.find("</a>") != -1:
             
-        #     start = page.find('<a href="') + 9
-        #     end = page.find('.html">') + 5
+            start = page.find('<a href="') + 9
+            end = page.find('.html">') + 5
 
-        #     urls += page[start:end] + " "
+            urls += page[start:end] + " "
 
-        #     page = page.replace('href="', "", 1)
-        #     page = page.replace('.html">', "", 1)
-        #     page = page.replace('</a>', "", 1)
+            page = page.replace('href="', "", 1)
+            page = page.replace('.html">', "", 1)
+            page = page.replace('</a>', "", 1)
 
-        # words = words.split()
-        # urls = urls.split()
+        words = words.split()
+        urls = urls.split()
 
-        # fileOut = open(wordFile, "r")
+        fileOut = open(wordFile, "w")
 
-        # for word in words:
-        #     fileOut.write(word)
+        for word in words:
+            fileOut.write(word + "\n")
         
-        # fileOut.close()
+        fileOut.close()
 
-        # fileOut = open(urlFile, "r")
+        fileOut = open(urlFile, "w")
 
-        # for url in urls:
-        #     if(url[0] == "."):
-        #         fileOut.write(absoluteUrl + url[1:len(url) - 1])
-        #     else:
-        #         fileOut.write(url)
-                
-
-        # # adding to queue 
-        # # check if the url isn't in queue 
-        # if url not in dict:
+        for url in urls:
+            if(url[0] == "."):
+                url = absoluteUrl + url[1:len(url)]
             
-        #     # increment count for all succeed crawls
-        #     count += 1
+            fileOut.write(url + "\n")
 
-        #     # make a new key of the url
-        #     dict[url] = count
+            # adding to queue 
+            # check if the url isn't in queue 
+            if url not in dict:
+            
+                # increment count for all succeed crawls
+                count += 1
 
-        #     # add to end of queue
-        #     queue.append(url)
+                # make a new key of the url
+                dict[url] = count
+
+                # add to end of queue
+                queue.append(url)
+        
 
     return count 
 
