@@ -79,20 +79,23 @@ def crawl(seed):
 
         # get the next url to parse through
         url = queue.pop()
-    
-        # create folder and files for the url
-        wordFile, urlFile = createFiles(str(dict[url]))
+
 
         #finding the abosolute url by finding the last "/" and saving its index
-        end = 0
+        lastSlash = 0
         for i in range(len(url) - 1, -1, -1):
 
             if(url[i] == "/"):
-                end = i
+                lastSlash = i
                 break
 
         #saving the absolute url by makign it a substring of the current url from its start until the last "/"
-        absoluteUrl = url[0:end]
+        absoluteUrl = url[0:lastSlash]
+
+        title = url[lastSlash + 1:]
+
+        # create folder and files for the url
+        wordFile, urlFile = createFiles(str(dict[url]) + "_" + title)
 
         page = webdev.read_url(url)
         
