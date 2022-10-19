@@ -46,24 +46,21 @@ def crawl(seed):
     # keeps track of the pages visited (used for runtime efficiency)
     dict = {}
     # keeps track of urls that have been yet to be parsed through
-    queue = []
+    queue = [seed]
     # keeps track of the number of total pages found
     count = 0
 
     # check if the main folder that will store all the information is made and empty
     manageFolder()
 
-    url = seed 
-
     while (len(queue) != 0):
+
+        url = queue.pop()
     
         # create folder and files for the url
         wordFile, urlFile = createFolderFiles(url)
 
         page = webdev.read_url(url)
-
-        # if there is pp extract pp
-        # if there is url extract url
         
         words = ""
         urls = ""
@@ -106,7 +103,6 @@ def crawl(seed):
             count += 1
 
     return count 
-
 
 
 print(webdev.read_url("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"))  
