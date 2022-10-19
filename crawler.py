@@ -32,7 +32,7 @@ def manageFolder():
 
 # fuction to create the necessary folder and files
 # returns the word file path and url file path so that it could be used in crawl(seed)
-def createFolderFiles(currentFile):
+def createFiles(currentFile):
 
     # store path for the subfolder of the current file
     filePath = os.path.join('crawl', currentFile)
@@ -77,7 +77,7 @@ def crawl(seed):
         url = queue.pop()
     
         # create folder and files for the url
-        wordFile, urlFile = createFolderFiles(url)
+        wordFile, urlFile = createFiles(url)
 
         page = webdev.read_url(url)
         
