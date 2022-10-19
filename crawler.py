@@ -34,6 +34,9 @@ def manageFolder():
 # returns the word file path and url file path so that it could be used in crawl(seed)
 def createFiles(currentFile):
 
+    # check for any #\/:*?"<>|" and replace them with spaces as they aren't allowed to be in a folder
+    currentFile = currentFile.replace("\\", " ").replace('/', " ").replace(':', " ").replace('*', " ").replace('?', " ").replace('\"', " ").replace('<', " ").replace('>', " ").replace('|', " ")
+
     # store path for the subfolder of the current file
     filePath = os.path.join('crawl', currentFile)
 
@@ -58,12 +61,10 @@ def createFiles(currentFile):
         # create an empty url file
         if not os.path.exists(urlPath):
             open(urlPath, "w").close()
-    
+
     return wordPath, urlPath
 
 def crawl(seed):
-
-    print(seed)
 
     # keeps track of the pages visited (used for runtime efficiency)
     dict = {}
@@ -81,7 +82,6 @@ def crawl(seed):
     
         # create folder and files for the url
         wordFile, urlFile = createFiles(url[7:])
-
         # page = webdev.read_url(url)
         
         words = ""
@@ -126,5 +126,4 @@ def crawl(seed):
 
     return count 
 
-
-print(createFiles("htttp://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"))  
+print(crawl("https://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"))  
