@@ -1,29 +1,36 @@
 import os
 
-def manageFolder():
-    # create a folder that will contain all the folders from the crawl
-    if os.path.exists("crawl"):
-        # if it's created already, check if there are files in the folder
+def createFolderFiles(currentFile):
 
-        # create a list of folders/files in the crawl folder
-        dirs = os.listdir("crawl")
+    filePath = os.path.join('crawl', currentFile)
 
-        # loop for all the subfolders in the crawl folder
-        for dir in dirs:
-            # store the path of the subfolder
-            subfolderPath = os.path.join("crawl", dir)
-
-            # make a list of all files in the subfolder
-            files = os.listdir(subfolderPath)
-
-            # loop for all the files in subfolder
-            for file in files:
-                # remove every file
-                os.remove(os.path.join(subfolderPath, file))
-            # remove the subfolder
-            os.rmdir(subfolderPath)
+    # create a directory for the url
+    # check if the folder with the same name exists
+    if os.path.exists(filePath):
+        print("currentFile exists in crawl")
     else:
-        # if there isn't, make a new folder 
-        os.makedirs("crawl")
+        # if there isn't, make a new folder with a name same as the url
+        os.makedirs(filePath)
 
-manageFolder()
+    # create files within the created folder
+    if os.path.isdir(filePath):
+        # create two files: words for storing words and url for storing urls
+        wordPath = os.path.join(filePath, "words")
+        urlPath = os.path.join(filePath, "urls")
+
+        # create an empty word file
+        if not os.path.exists(wordPath):
+            open(wordPath, "w").close()
+
+        # create an empty url file
+        if not os.path.exists(urlPath):
+            open(urlPath, "w").close()
+        
+    return wordPath, urlPath
+
+
+list = ["I", "love", "V", "he", "is", "my", "husband"]
+
+for index in list:
+    word, url = createFolderFiles(index)
+    print(word + "\n " + url)

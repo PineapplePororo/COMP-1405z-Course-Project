@@ -34,20 +34,31 @@ def manageFolder():
 # returns the word file path and url file path so that it could be used in crawl(seed)
 def createFolderFiles(currentFile):
 
+    # store path for the subfolder of the current file
+    filePath = os.path.join('crawl', currentFile)
+
     # create a directory for the url
     # check if the folder with the same name exists
-    if os.path.exists(os.path.join('crawl', currentFile)):
+    if os.path.exists(filePath):
         print("currentFile exists in crawl")
     else:
         # if there isn't, make a new folder with a name same as the url
-        os.makedirs(os.path.join('crawl', currentFile))
+        os.makedirs(filePath)
 
     # create files within the created folder
-    if os.path.isdir(os.path.join('crawl', currentFile)):
+    if os.path.isdir(filePath):
         # create two files: words for storing words and url for storing urls
-        wordPath = os.path.join(currentFile, "words")
-        urlPath = os.path.join(currentFile, "urls")
+        wordPath = os.path.join(filePath, "words")
+        urlPath = os.path.join(filePath, "urls")
 
+        # create an empty word file
+        if not os.path.exists(wordPath):
+            open(wordPath, "w").close()
+
+        # create an empty url file
+        if not os.path.exists(urlPath):
+            open(urlPath, "w").close()
+        
     return wordPath, urlPath
 
 def crawl(seed):
