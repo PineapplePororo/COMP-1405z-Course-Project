@@ -1,6 +1,8 @@
 import webdev
 import os
 
+dict = {}
+
 # checks if the main folder that will have all the folders from crawl is made and empty
 # void method
 def manageFolder():
@@ -62,6 +64,8 @@ def createFiles(currentFile):
     return wordPath, urlPath
 
 def crawl(seed):
+
+    global dict
 
     # keeps track of the pages visited (used for runtime efficiency)
     # it has a url of seed at first
@@ -157,4 +161,11 @@ def crawl(seed):
 
     return count 
 
-print(crawl("https://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"))  
+# def time():
+#     import time
+#     start = time.time()
+#     crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
+#     end = time.time()
+#     print(end - start)
+
+# time()
