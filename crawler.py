@@ -59,9 +59,14 @@ def createFiles(currentFile):
         if not os.path.exists(urlPath):
             open(urlPath, "w").close()
         
+    print(wordPath + "\n " + urlPath)
+    
     return wordPath, urlPath
 
 def crawl(seed):
+
+    print(seed)
+
     # keeps track of the pages visited (used for runtime efficiency)
     dict = {}
     # keeps track of urls that have been yet to be parsed through
@@ -75,11 +80,15 @@ def crawl(seed):
     while (len(queue) != 0):
 
         url = queue.pop()
+
+        print("url " + url)
     
         # create folder and files for the url
-        wordFile, urlFile = createFiles(url)
+        wordFile, urlFile = createFiles(url[7:])
 
-        page = webdev.read_url(url)
+        print("function file paths: \n" + wordFile + "\n " + urlFile)
+
+        # page = webdev.read_url(url)
         
         words = ""
         urls = ""
@@ -124,4 +133,4 @@ def crawl(seed):
     return count 
 
 
-print(webdev.read_url("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"))  
+print(createFiles("htttp://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"))  
