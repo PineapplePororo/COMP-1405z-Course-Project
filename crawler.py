@@ -58,8 +58,6 @@ def createFiles(currentFile):
         # create an empty url file
         if not os.path.exists(urlPath):
             open(urlPath, "w").close()
-        
-    print(wordPath + "\n " + urlPath)
     
     return wordPath, urlPath
 
@@ -80,13 +78,9 @@ def crawl(seed):
     while (len(queue) != 0):
 
         url = queue.pop()
-
-        print("url " + url)
     
         # create folder and files for the url
         wordFile, urlFile = createFiles(url[7:])
-
-        print("function file paths: \n" + wordFile + "\n " + urlFile)
 
         # page = webdev.read_url(url)
         
