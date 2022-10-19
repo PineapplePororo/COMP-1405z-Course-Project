@@ -56,7 +56,18 @@ def crawl(seed):
     while (len(queue) != 0):
 
         url = queue.pop()
-    
+
+        #finding the abosolute url by finding the last "/" and saving its index
+        end = 0
+        for i in range(len(url) - 1, -1, -1):
+
+            if(url[i] == "/"):
+                end = i
+                break
+        
+        #saving the absolute url by makign it a substring of the current url from its start until the last "/"
+        absoluteUrl = url[0:end]
+
         # create folder and files for the url
         wordFile, urlFile = createFolderFiles(url)
 
@@ -88,6 +99,22 @@ def crawl(seed):
 
         words = words.split()
         urls = urls.split()
+
+        fileOut = open(wordFile, "r")
+
+        for word in words:
+            fileOut.write(word)
+        
+        fileOut.close()
+
+        fileOut = open(urlFile, "r")
+
+        for url in urls:
+            if(url[0] == "."):
+                fileOut.write(absoluteUrl + url[1:len(url) - 1])
+            else:
+                fileOut.write(url)
+                
 
         # adding to queue 
         # check if the url isn't in queue 
