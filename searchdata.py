@@ -3,7 +3,6 @@ import matmult
 import math
 import os
 
-
 # returns a list of other URLs that the page with the given URL links to
 def get_outgoing_links(url):
 
@@ -100,6 +99,7 @@ def get_page_rank(url):
 
         links = get_outgoing_links(currUrl)
 
+        #print(links)
         # Adding the index maps for all the outgoing urls in the current row
         linkMaps = []
         for link in links:
@@ -107,6 +107,7 @@ def get_page_rank(url):
         linkMaps.sort()
         linkMaps.append("<end-map>")
 
+        #print("THE LINK MAP: " + linkMaps)
         
         #going throught each column in the row
         for j in range(len(dict)):  

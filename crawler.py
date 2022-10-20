@@ -173,7 +173,7 @@ def crawl(seed):
     return count 
 
 
-crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
+#print(crawl("http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html"))
 # def time():
 #     import time
 #     start = time.time()
