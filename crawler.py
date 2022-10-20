@@ -179,6 +179,8 @@ def crawl(seed):
                 # add to end of queue
                 queue.append(url)
 
+        fileOut.close()
+        
 
     # dump to file using json
     with open(os.path.join('crawl', "dict.json"), 'w') as outfile:
