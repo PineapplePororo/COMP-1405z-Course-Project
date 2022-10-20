@@ -1,7 +1,10 @@
 import webdev
 import os
 
+# key: url , value:full folder name
 dict = {}
+# key: the number before the underscore in folder name , key: url
+reverseDict = {}
 
 # checks if the main folder that will have all the folders from crawl is made and empty
 # void method
@@ -65,7 +68,7 @@ def createFiles(currentFile):
 
 def crawl(seed):
 
-    global dict
+    global dict, reverseDict
 
     # keeps track of the pages visited (used for runtime efficiency)
     # it has a url of seed at first
@@ -84,7 +87,6 @@ def crawl(seed):
         # get the next url to parse through
         url = queue.pop()
 
-
         #finding the abosolute url by finding the last "/" and saving its index
         lastSlash = 0
         for i in range(len(url) - 1, -1, -1):
@@ -96,10 +98,17 @@ def crawl(seed):
         #saving the absolute url by makign it a substring of the current url from its start until the last "/"
         absoluteUrl = url[0:lastSlash]
 
+        # retrieve title 
         title = url[lastSlash + 1:]
 
+        # add to reverse dict
+        reverseDict[dict[url]] = url
+
+        # since value of a key is the title of the folder, add the title to the folder name
+        dict[url] = str(dict[url]) + "_" + title
         # create folder and files for the url
-        wordFile, urlFile = createFiles(str(dict[url]) + "_" + title)
+        wordFile, urlFile = createFiles(str(dict[url]))
+
 
         page = webdev.read_url(url)
         
@@ -160,6 +169,9 @@ def crawl(seed):
         
 
     return count 
+
+
+crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
 
 # def time():
 #     import time

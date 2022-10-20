@@ -1,19 +1,55 @@
 from crawler import dict
 import matmult
 import math
+import os
 
-# alvina
+
+# returns a list of other URLs that the page with the given URL links to
 def get_outgoing_links(url):
 
-    '''
-    returns a list of other URLs that the page with the given URL links to
-    
-    '''
-    pass
+    # if the url wasn't found in the crawling process
+    if url not in dict:
+        return None
+
+    list = []
+
+    # retrieve the name of the folder of the specific url
+    folderName = dict[url]    
+
+    # find the path to the folder
+    folderPath = os.path.join('crawl', folderName)
+
+    # find the path to the url file
+    urlFilePath = os.path.join(folderPath, "urls")
+
+    # open file
+    urls = open(urlFilePath, "r")
+
+    for link in urls:
+        # add every url to list
+        list.append(link.strip())
+
+    return list
 
 
 # alvina
 def get_incoming_links(url):
+
+    # a lsit of urls for pages that link to the given url
+    list = []
+
+    # store the list of all folders in crawl
+    folders = os.listdir("crawl")
+
+    for folder in folders:
+        # find the path to the url file
+        urlFilePath = os.path.join(os.path.join("crawl", folder), "urls")
+
+        urls = open(urlFilePath, "r")
+
+        # for link in urls:
+        #     if link == url:
+
 
     '''
     returns a list of URLs for pages that link to the page with the given URL
@@ -71,3 +107,8 @@ def get_tf_idf(url, word):
 
     '''
     pass
+
+
+s = "http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"
+
+print(get_incoming_links(s))
