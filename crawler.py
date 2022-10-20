@@ -1,5 +1,6 @@
 import webdev
 import os
+import json
 
 # key: url , value:full folder name
 dict = {}
@@ -18,21 +19,29 @@ def manageFolder():
 
         # loop for all the subfolders in the crawl folder
         for dir in dirs:
-            # store the path of the subfolder
-            subfolderPath = os.path.join("crawl", dir)
 
-            # make a list of all files in the subfolder
-            files = os.listdir(subfolderPath)
+            # deleting dict json file
+            if dir == "dict.json":
+                os.remove(os.path.join('crawl', "dict.json"))
+            else:
+                # store the path of the subfolder
+                subfolderPath = os.path.join("crawl", dir)
 
-            # loop for all the files in subfolder
-            for file in files:
-                # remove every file
-                os.remove(os.path.join(subfolderPath, file))
-            # remove the subfolder
-            os.rmdir(subfolderPath)
+                # make a list of all files in the subfolder
+                files = os.listdir(subfolderPath)
+
+                # loop for all the files in subfolder
+                for file in files:
+                    # remove every file
+                    os.remove(os.path.join(subfolderPath, file))
+                # remove the subfolder
+                os.rmdir(subfolderPath)
     else:
         # if there isn't, make a new folder 
         os.makedirs("crawl")
+
+    # creating dict json file
+    open(os.path.join('crawl', "dict.json"), "w").close()
 
 
 # fuction to create the necessary folder and files
@@ -166,7 +175,11 @@ def crawl(seed):
 
                 # add to end of queue
                 queue.append(url)
-        
+
+
+    # dump to file using json
+    with open(os.path.join('crawl', "dict.json"), 'w') as outfile:
+        json.dump(dict, outfile, indent=4, ensure_ascii=False)
 
     return count 
 

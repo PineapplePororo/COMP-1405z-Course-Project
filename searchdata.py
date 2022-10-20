@@ -1,7 +1,9 @@
-from crawler import dict, reverseDict
+from crawler import reverseDict
 import math
 import os
+import json
 
+dict = json.load(open(os.path.join('crawl', "dict.json"), "r"))
 
 # returns a list of other URLs that the page with the given URL links to
 def get_outgoing_links(url):
@@ -148,8 +150,7 @@ def get_tf(url, word):
 # return the tf-idf weight for the given word within the page represented by the given URL
 def get_tf_idf(url, word):
     return math.log(1+get_tf(url, word), 2)*get_idf(word)
-   
-   
+
 
 '''
 # test cases:
