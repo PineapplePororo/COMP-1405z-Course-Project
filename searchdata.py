@@ -84,13 +84,13 @@ def get_page_rank(url):
 
     #TEST PURPOSES - GETTING THE MAP 
 
-    for k in range(len(dict)):
+    # for k in range(len(dict)):
 
-        themap = dict[reverseDict[k+1]]
+    #     themap = dict[reverseDict[k+1]]
 
-        print(str(k) + " --> " + themap)
+    #     print(str(k) + " --> " + themap)
 
-    print()
+    # print()
 
     for i in range(len(reverseDict)):
         
@@ -119,7 +119,7 @@ def get_page_rank(url):
                 urlRow.append(0)
 
         adjacencyMat.append(urlRow)
-        print(urlRow)
+        #print(urlRow)
 
     # INTIAL PROBABILITY MATRIX
 
@@ -140,17 +140,17 @@ def get_page_rank(url):
     for i in range(len(adjacencyMat)):
         initialProbMat.append(matmult.mult_scalar([adjacencyMat[i]], 1/rowSum[i])[0])
 
-    print("\nTHIS IS THE INTIAL PROBABLITY MATRIX:")
-    for row in initialProbMat:
-        print(row)
+    # print("\nTHIS IS THE INTIAL PROBABLITY MATRIX:")
+    # for row in initialProbMat:
+    #     print(row)
 
     #SCALEDED ADJACENCY MATRIX
     ALPHA = 0.1
     scaledMatrix = matmult.mult_scalar(initialProbMat, (1-ALPHA))
 
-    print("\nTHIS IS THE SCALED PROBABILITY MATRIX")
-    for row in scaledMatrix:
-        print(row)
+    # print("\nTHIS IS THE SCALED PROBABILITY MATRIX")
+    # for row in scaledMatrix:
+    #     print(row)
 
     #ADD ALPHA/N TO EACH ENTRY
     finalMatrix = []
@@ -161,24 +161,24 @@ def get_page_rank(url):
             finalRow.append(col + (ALPHA/len(dict)))
         finalMatrix.append(finalRow)
 
-    print("\nTHIS IS THE FINAL MATRIX")
-    for row in finalMatrix:
-        print(row)
+    # print("\nTHIS IS THE FINAL MATRIX")
+    # for row in finalMatrix:
+    #     print(row)
 
     #POWER ITERATION
-    initialValue = []
+    initialValue = [[]]
 
     #sets the intial value as a row that has a sum of 1
     for i in range(len(dict)):
-            initialValue.append(1/len(dict))
+            initialValue[0].append(1/len(dict))
 
     #print(initialValue)
     
-    prev = matmult.mult_matrix([initialValue], finalMatrix)
+    prev = matmult.mult_matrix(initialValue, finalMatrix)
     curr = matmult.mult_matrix(prev, finalMatrix)
-    ecDistance = matmult.euclidean_dist(curr, prev)
+    ecDistance = matmult.euclidean_dist(prev, curr)
 
-    while(ecDistance <=  0.0001):
+    while(ecDistance >  0.0001):
 
         prev = curr
 
@@ -186,16 +186,22 @@ def get_page_rank(url):
 
         ecDistance = matmult.euclidean_dist(curr, prev)
 
+        #print("Ec distance is: " + str(ecDistance))
+
     pageRanks = curr
 
-    print(pageRanks)
+    #print()
+    #print(pageRanks)
 
-    print(int(dict[url].split("_")[0]) - 1)
+    #print(int(dict[url].split("_")[0]) - 1)
 
+    #WHAT IF THE PAGE DOESNT EXIST
+    if url not in dict:
+        return -1
     return pageRanks[0][int(dict[url].split("_")[0]) - 1]
 
 
-print(get_page_rank("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-3.html"))
+#print(get_page_rank("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-3.html"))
 #print(len(get_outgoing_links("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")))
 
 # omar
