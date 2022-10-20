@@ -167,12 +167,13 @@ def crawl(seed):
                 # add to end of queue
                 queue.append(url)
         
+        fileOut.close()
+        
 
     return count 
 
 
 crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
-
 # def time():
 #     import time
 #     start = time.time()

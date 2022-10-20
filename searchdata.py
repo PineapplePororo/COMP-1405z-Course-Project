@@ -1,4 +1,4 @@
-from crawler import dict
+from crawler import dict, reverseDict
 import matmult
 import math
 import os
@@ -74,8 +74,129 @@ def get_page_rank(url):
     Euclidean distance
     
     '''
+    #Creating Adjacency  matrix
+    adjacencyMat = []
+
+    # outgoing_urls = [ n-0, n-3, n5  ]
+    #print(reverseDict)
+
+    #CREATING THE INITAL ADJACENCY MATRIX
+
+    #TEST PURPOSES - GETTING THE MAP 
+
+    for k in range(len(dict)):
+
+        themap = dict[reverseDict[k+1]]
+
+        print(str(k) + " --> " + themap)
+
+    print()
+
+    for i in range(len(reverseDict)):
+        
+        urlRow = []
+
+        currUrl = reverseDict[i + 1]
+
+        links = get_outgoing_links(currUrl)
+
+        # Adding the index maps for all the outgoing urls in the current row
+        linkMaps = []
+        for link in links:
+            linkMaps.append(int(dict[link].split("_")[0]) - 1)
+        linkMaps.sort()
+        linkMaps.append("<end-map>")
+
+        
+        #going throught each column in the row
+        for j in range(len(dict)):  
+
+            #if the current column index and the link have the same map then adding 1 otherwise adding 0         
+            if j == linkMaps[0]:
+                urlRow.append(1)
+                linkMaps.pop(0)
+            else:
+                urlRow.append(0)
+
+        adjacencyMat.append(urlRow)
+        print(urlRow)
+
+    # INTIAL PROBABILITY MATRIX
+
+    #finding the sum of all values in a row
+    rowSum = []
+    for row in adjacencyMat:
+        sum = 0
+       
+        for col in row:
+            sum += col
+        rowSum.append(sum)
+
+    initialProbMat = []
+
     
-    pass
+    #Dividing each value in a row by the sum of values in it
+    
+    for i in range(len(adjacencyMat)):
+        initialProbMat.append(matmult.mult_scalar([adjacencyMat[i]], 1/rowSum[i])[0])
+
+    print("\nTHIS IS THE INTIAL PROBABLITY MATRIX:")
+    for row in initialProbMat:
+        print(row)
+
+    #SCALEDED ADJACENCY MATRIX
+    ALPHA = 0.1
+    scaledMatrix = matmult.mult_scalar(initialProbMat, (1-ALPHA))
+
+    print("\nTHIS IS THE SCALED PROBABILITY MATRIX")
+    for row in scaledMatrix:
+        print(row)
+
+    #ADD ALPHA/N TO EACH ENTRY
+    finalMatrix = []
+
+    for row in scaledMatrix:
+        finalRow = []
+        for col in row:
+            finalRow.append(col + (ALPHA/len(dict)))
+        finalMatrix.append(finalRow)
+
+    print("\nTHIS IS THE FINAL MATRIX")
+    for row in finalMatrix:
+        print(row)
+
+    #POWER ITERATION
+    initialValue = []
+
+    #sets the intial value as a row that has a sum of 1
+    for i in range(len(dict)):
+            initialValue.append(1/len(dict))
+
+    #print(initialValue)
+    
+    prev = matmult.mult_matrix([initialValue], finalMatrix)
+    curr = matmult.mult_matrix(prev, finalMatrix)
+    ecDistance = matmult.euclidean_dist(curr, prev)
+
+    while(ecDistance <=  0.0001):
+
+        prev = curr
+
+        curr = matmult.mult_matrix(curr, finalMatrix)
+
+        ecDistance = matmult.euclidean_dist(curr, prev)
+
+    pageRanks = curr
+
+    print(pageRanks)
+
+    print(int(dict[url].split("_")[0]) - 1)
+
+    return pageRanks[0][int(dict[url].split("_")[0]) - 1]
+
+
+print(get_page_rank("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-3.html"))
+#print(len(get_outgoing_links("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")))
 
 # omar
 def get_idf(word):
