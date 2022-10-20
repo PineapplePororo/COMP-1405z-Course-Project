@@ -44,6 +44,7 @@ def manageFolder():
 
     # creating dict json file
     open(os.path.join('crawl', "dict.json"), "w").close()
+    open(os.path.join('crawl', "reverseDict.json"), "w").close()
 
 
 # fuction to create the necessary folder and files
@@ -184,7 +185,7 @@ def crawl(seed):
         json.dump(dict, outfile, indent=4, ensure_ascii=False)
 
     with open(os.path.join('crawl', "reverseDict.json"), 'w') as outfile:
-        json.dump(dict, outfile, indent=4, ensure_ascii=False)
+        json.dump(reverseDict, outfile, indent=4, ensure_ascii=False)
 
     return count 
 
