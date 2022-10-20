@@ -23,6 +23,8 @@ def manageFolder():
             # deleting dict json file
             if dir == "dict.json":
                 os.remove(os.path.join('crawl', "dict.json"))
+            elif dir == "reverseDict.json":
+                os.remove(os.path.join('crawl', "reverseDict.json"))
             else:
                 # store the path of the subfolder
                 subfolderPath = os.path.join("crawl", dir)
@@ -179,6 +181,9 @@ def crawl(seed):
 
     # dump to file using json
     with open(os.path.join('crawl', "dict.json"), 'w') as outfile:
+        json.dump(dict, outfile, indent=4, ensure_ascii=False)
+
+    with open(os.path.join('crawl', "reverseDict.json"), 'w') as outfile:
         json.dump(dict, outfile, indent=4, ensure_ascii=False)
 
     return count 

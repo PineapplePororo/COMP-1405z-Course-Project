@@ -1,9 +1,9 @@
-from crawler import reverseDict
 import math
 import os
 import json
 
 dict = json.load(open(os.path.join('crawl', "dict.json"), "r"))
+reverseDict = json.load(open(os.path.join('crawl', "reverseDict.json"), "r"))
 
 # returns a list of other URLs that the page with the given URL links to
 def get_outgoing_links(url):
