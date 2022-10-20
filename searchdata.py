@@ -2,6 +2,7 @@ import math
 import os
 import json
 import crawler
+import matmult
 
 dict = json.load(open(os.path.join('crawl', "dict.json"), "r"))
 reverseDict = json.load(open(os.path.join('crawl', "reverseDict.json"), "r"))
@@ -54,7 +55,7 @@ def get_incoming_links(url):
         for link in urls:
             if url == link.strip():
                 # matched; add the url of this file's owner to list
-                list.append(reverseDict[int(folder.split("_")[0])])
+                list.append(reverseDict[folder.split("_")[0]])
                 break
 
     # if given url was not found during was not found
@@ -66,15 +67,6 @@ def get_incoming_links(url):
 
 # omar
 def get_page_rank(url):
-
-    '''
-    returns the pagerank value of the page with that url
-
-    watch lecture video
-    alpha value of 0.1
-    Euclidean distance
-    
-    '''
     #Creating Adjacency  matrix
     adjacencyMat = []
 
@@ -97,7 +89,8 @@ def get_page_rank(url):
         
         urlRow = []
 
-        currUrl = reverseDict[i + 1]
+        # print(reverseDict["1"])
+        currUrl = reverseDict[str(i + 1)]
 
         links = get_outgoing_links(currUrl)
 
