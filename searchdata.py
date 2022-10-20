@@ -1,6 +1,7 @@
 import math
 import os
 import json
+import crawler
 
 dict = json.load(open(os.path.join('crawl', "dict.json"), "r"))
 reverseDict = json.load(open(os.path.join('crawl', "reverseDict.json"), "r"))
@@ -88,24 +89,29 @@ def get_idf(word):
     folders = os.listdir("crawl")
 
     for folder in folders:
-        # find the path to the word file
-        wordFilePath = os.path.join(os.path.join("crawl", folder), "words")
+        # check if they are folders (not json files)
+        if os.path.isdir(os.path.join("crawl", folder)):
+            # find the path to the word file
+            wordFilePath = os.path.join(os.path.join("crawl", folder), "words")
 
-        # open the url folder
-        words = open(wordFilePath, "r")
+            # open the url folder
+            words = open(wordFilePath, "r")
 
-        # check every link to see if it matches the given url
-        for w in words:
-            if word == w.strip():
-                # matched; increment count
-                count += 1
-                break
+            # check every link to see if it matches the given url
+            for w in words:
+                if word == w.strip():
+                    # matched; increment count
+                    count += 1
+                    break
 
     # if given url was not found during was not found
     if (count == 0):
         return 0
 
-    return math.log((len(dict)/(1+count)), 2)
+    # math calculation breakdown
+    count += 1
+    temp = len(dict)/count
+    return math.log(temp, 2)
 
 
 # return the term frequency of that word within the page with the given URL
@@ -121,7 +127,8 @@ def get_tf(url, word):
     totalCount = 0
 
     # retrieve the name of the folder of the specific url
-    folderName = dict[url]    
+    folderName = dict[url]
+        
 
     # find the path to the folder
     folderPath = os.path.join('crawl', folderName)
@@ -154,6 +161,7 @@ def get_tf_idf(url, word):
 
 '''
 # test cases:
+crawler.crawl('http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html')
 
 # 2 3 4 5 6 7 8 9
 s0 = "http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"
@@ -165,13 +173,14 @@ s8 = "http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-8.html"
 # print(get_outgoing_links(s0))
 
 # # total kiwi : 7
-# print(get_idf("none"))
+# print(get_idf("kiwi"))
 
 # # s0, coconut = 3/23
 # print(get_tf(s0, "none"))
 
 # # kiwi; idf: log(10/1+7) tf: 2/23
 # print(get_tf_idf(s0, "kiwi"))
+
 '''
 
 
