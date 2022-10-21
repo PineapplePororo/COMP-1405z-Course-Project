@@ -202,9 +202,6 @@ def crawl(seed):
     
     with open(os.path.join('crawl', "0_tf.json"), 'w') as outfile:
         json.dump(tf, outfile, indent=4, ensure_ascii=False)
-
-    with open(os.path.join('crawl', "0_pageRank.json"), 'w') as outfile:
-        json.dump(tf, outfile, indent=4, ensure_ascii=False)
     
     return count 
 
