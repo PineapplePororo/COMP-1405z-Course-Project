@@ -65,134 +65,75 @@ def get_incoming_links(url):
     return list
 
 
-# omar
+# returns the PageRank value of the page with that URL
 def get_page_rank(url):
-    #Creating Adjacency  matrix
-    adjacencyMat = []
 
-    # outgoing_urls = [ n-0, n-3, n5  ]
-    #print(reverseDict)
-
-    #CREATING THE INITAL ADJACENCY MATRIX
-
-    #TEST PURPOSES - GETTING THE MAP 
-
-    # for k in range(len(dict)):
-
-    #     themap = dict[reverseDict[k+1]]
-
-    #     print(str(k) + " --> " + themap)
-
-    # print()
-
-    for i in range(len(reverseDict)):
-        
-        urlRow = []
-
-        # print(reverseDict["1"])
-        currUrl = reverseDict[str(i + 1)]
-
-        links = get_outgoing_links(currUrl)
-
-        # Adding the index maps for all the outgoing urls in the current row
-        linkMaps = []
-        for link in links:
-            linkMaps.append(int(dict[link].split("_")[0]) - 1)
-        linkMaps.sort()
-        linkMaps.append("<end-map>")
-
-        
-        #going throught each column in the row
-        for j in range(len(dict)):  
-
-            #if the current column index and the link have the same map then adding 1 otherwise adding 0         
-            if j == linkMaps[0]:
-                urlRow.append(1)
-                linkMaps.pop(0)
-            else:
-                urlRow.append(0)
-
-        adjacencyMat.append(urlRow)
-        #print(urlRow)
-
-    # INTIAL PROBABILITY MATRIX
-
-    #finding the sum of all values in a row
-    rowSum = []
-    for row in adjacencyMat:
-        sum = 0
-       
-        for col in row:
-            sum += col
-        rowSum.append(sum)
-
-    initialProbMat = []
-
-    
-    #Dividing each value in a row by the sum of values in it
-    
-    for i in range(len(adjacencyMat)):
-        initialProbMat.append(matmult.mult_scalar([adjacencyMat[i]], 1/rowSum[i])[0])
-
-    # print("\nTHIS IS THE INTIAL PROBABLITY MATRIX:")
-    # for row in initialProbMat:
-    #     print(row)
-
-    #SCALEDED ADJACENCY MATRIX
-    ALPHA = 0.1
-    scaledMatrix = matmult.mult_scalar(initialProbMat, (1-ALPHA))
-
-    # print("\nTHIS IS THE SCALED PROBABILITY MATRIX")
-    # for row in scaledMatrix:
-    #     print(row)
-
-    #ADD ALPHA/N TO EACH ENTRY
-    finalMatrix = []
-
-    for row in scaledMatrix:
-        finalRow = []
-        for col in row:
-            finalRow.append(col + (ALPHA/len(dict)))
-        finalMatrix.append(finalRow)
-
-    # print("\nTHIS IS THE FINAL MATRIX")
-    # for row in finalMatrix:
-    #     print(row)
-
-    #POWER ITERATION
-    initialValue = [[]]
-
-    #sets the intial value as a row that has a sum of 1
-    for i in range(len(dict)):
-            initialValue[0].append(1/len(dict))
-
-    #print(initialValue)
-    
-    prev = matmult.mult_matrix(initialValue, finalMatrix)
-    curr = matmult.mult_matrix(prev, finalMatrix)
-    ecDistance = matmult.euclidean_dist(prev, curr)
-
-    while(ecDistance >  0.0001):
-
-        prev = curr
-
-        curr = matmult.mult_matrix(curr, finalMatrix)
-
-        ecDistance = matmult.euclidean_dist(curr, prev)
-
-        #print("Ec distance is: " + str(ecDistance))
-
-    pageRanks = curr
-
-    #print()
-    #print(pageRanks)
-
-    #print(int(dict[url].split("_")[0]) - 1)
-
-    #WHAT IF THE PAGE DOESNT EXIST
+    # url not found during the crawling process
     if url not in dict:
         return -1
-    return pageRanks[0][int(dict[url].split("_")[0]) - 1]
+
+    pageRank = json.load(open(os.path.join('crawl', "0_pageRank.json"), "r"))
+
+    # if the list has already been created
+    if len(pageRank) != 0:
+        # return the corresponding pagerank value of url
+        return pageRank[0][int(dict[url].split("_")[0]) - 1]
+    else:
+        # creating n*n Adjacency  matrix
+        adjacencyMat = [[0.0]*len(reverseDict)]*len(reverseDict)
+
+        # finishing adjacency matrix
+        for i in range(len(reverseDict)):
+
+            # grab all the links that is linked to the current index of the matrix
+            links = get_outgoing_links(reverseDict[str(i + 1)])
+
+
+            # if there is no outgoing links
+            if len(links) == 0:
+                # for every entry 
+                for col in len(reverseDict):
+                    # adjacency = have value be 1/N 
+                    # then (1-alpha * adjacency) for scaled adjacency matrix
+                    # final adjcency matrix: add alpha/N
+                    adjacencyMat[i][col] = ((1/len(reverseDict))*(1-0.1)) + (0.1/len(reverseDict))
+            # if there are outgoing links
+            else:
+                # for all links linked
+                for link in links:
+                    # adjacency = find the corresponding column index of the link and set it to 1
+                    # then (1-alpha * adjacency) for scaled adjacency matrix
+                    adjacencyMat[i][int(dict[link].split("_")[0])] = (1/len(links))*(1-0.1)
+
+                # for every entry 
+                for col in len(reverseDict):
+                    # final adjcency matrix: add alpha/N
+                    adjacencyMat[i][col] = adjacencyMat[i][col] + (0.1/len(reverseDict))
+    
+        #POWER ITERATION
+        initialValue = [adjacencyMat[0]]
+        
+        # find matrix of prev, curr and calculate Euclidean distance
+        prev = matmult.mult_matrix(initialValue, adjacencyMat)
+        curr = matmult.mult_matrix(prev, adjacencyMat)
+        ecDistance = matmult.euclidean_dist(prev, curr)
+
+        # loop ends when Euclidean distance is below 0.0001
+        while(ecDistance >  0.0001):
+
+            prev = curr
+
+            # multiply the matrixes
+            curr = matmult.mult_matrix(curr, adjacencyMat)
+            # recalculate Euclidean distance
+            ecDistance = matmult.euclidean_dist(curr, prev)
+
+        # store output to json 
+        with open(os.path.join('crawl', "0_pageRank.json"), 'w') as outfile:
+            json.dump(curr, outfile, indent=4, ensure_ascii=False)
+
+        # return the corresponding pagerank value of url
+        return curr[0][int(dict[url].split("_")[0]) - 1]
 
 
 #print(get_page_rank("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-3.html"))

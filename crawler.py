@@ -26,6 +26,8 @@ def manageFolder():
     open(os.path.join('crawl', "0_incoming.json"), "w").close()
     open(os.path.join('crawl', "0_twf.json"), "w").close()
     open(os.path.join('crawl', "0_tf.json"), "w").close()
+    # for pagerank
+    open(os.path.join('crawl', "0_pageRank.json"), "w").close()
     
 
 # fuction to create the necessary folder and files
@@ -199,6 +201,9 @@ def crawl(seed):
         json.dump(twf, outfile, indent=4, ensure_ascii=False)
     
     with open(os.path.join('crawl', "0_tf.json"), 'w') as outfile:
+        json.dump(tf, outfile, indent=4, ensure_ascii=False)
+
+    with open(os.path.join('crawl', "0_pageRank.json"), 'w') as outfile:
         json.dump(tf, outfile, indent=4, ensure_ascii=False)
     
     return count 
