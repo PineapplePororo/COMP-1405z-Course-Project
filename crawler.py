@@ -2,50 +2,31 @@ import webdev
 import os
 import json
 
-# key: url , value:full folder name
-dict = {}
-# key: the number before the underscore in folder name , key: url
-reverseDict = {}
-
 # checks if the main folder that will have all the folders from crawl is made and empty
 # void method
 def manageFolder():
-    # create a folder that will contain all the folders from the crawl
+    # create a folder that will contain all the files from the crawl
     if os.path.exists("crawl"):
         # if it's created already, check if there are files in the folder
 
-        # create a list of folders/files in the crawl folder
-        dirs = os.listdir("crawl")
+        # create a list of files in the crawl folder
+        files = os.listdir("crawl")
 
-        # loop for all the subfolders in the crawl folder
-        for dir in dirs:
-
-            # deleting dict json file
-            if dir == "dict.json":
-                os.remove(os.path.join('crawl', "dict.json"))
-            elif dir == "reverseDict.json":
-                os.remove(os.path.join('crawl', "reverseDict.json"))
-            else:
-                # store the path of the subfolder
-                subfolderPath = os.path.join("crawl", dir)
-
-                # make a list of all files in the subfolder
-                files = os.listdir(subfolderPath)
-
-                # loop for all the files in subfolder
-                for file in files:
-                    # remove every file
-                    os.remove(os.path.join(subfolderPath, file))
-                # remove the subfolder
-                os.rmdir(subfolderPath)
+        # loop for all files in crawl
+        for file in files:
+            # remove every file
+            os.remove(os.path.join("crawl", file))
     else:
         # if there isn't, make a new folder 
         os.makedirs("crawl")
 
-    # creating dict json file
-    open(os.path.join('crawl', "dict.json"), "w").close()
-    open(os.path.join('crawl', "reverseDict.json"), "w").close()
-
+    # creating necessary json files
+    open(os.path.join('crawl', "0_dict.json"), "w").close()
+    open(os.path.join('crawl', "0_reverseDict.json"), "w").close()
+    open(os.path.join('crawl', "0_incoming.json"), "w").close()
+    open(os.path.join('crawl', "0_twf.json"), "w").close()
+    open(os.path.join('crawl', "0_tf.json"), "w").close()
+    
 
 # fuction to create the necessary folder and files
 # returns the word file path and url file path so that it could be used in crawl(seed)
@@ -54,33 +35,16 @@ def createFiles(currentFile):
     # store path for the subfolder of the current file
     filePath = os.path.join('crawl', currentFile)
 
-    # create a directory for the url
-    # check if the folder with the same name exists
-    if os.path.exists(filePath):
-        print("currentFile exists in crawl")
-    else:
-        # if there isn't, make a new folder with a name same as the url
-        os.makedirs(filePath)
+    # create an empty word file
+    if not os.path.exists(filePath):
+        open(filePath, "w").close()
 
-    # create files within the created folder
-    if os.path.isdir(filePath):
-        # create two files: words for storing words and url for storing urls
-        wordPath = os.path.join(filePath, "words")
-        urlPath = os.path.join(filePath, "urls")
-
-        # create an empty word file
-        if not os.path.exists(wordPath):
-            open(wordPath, "w").close()
-
-        # create an empty url file
-        if not os.path.exists(urlPath):
-            open(urlPath, "w").close()
-
-    return wordPath, urlPath
+    return filePath
 
 def crawl(seed):
 
-    global dict, reverseDict
+    # key: the number before the underscore in folder name , key: url
+    reverseDict = {}
 
     # keeps track of the pages visited (used for runtime efficiency)
     # it has a url of seed at first
@@ -119,7 +83,7 @@ def crawl(seed):
         # since value of a key is the title of the folder, add the title to the folder name
         dict[url] = str(dict[url]) + "_" + title
         # create folder and files for the url
-        wordFile, urlFile = createFiles(str(dict[url]))
+        urlFile = createFiles(str(dict[url]))
 
 
         page = webdev.read_url(url)
