@@ -1,6 +1,0 @@
-1. Do absolute urls only contain urls or also could have <p> tags
-2. Does the url have multiple <p> tags like <href> tags?
-3. are the tags in any specific order (ex: <p> <p> <href>, <p> <href> <p>)
-
-
-empty url/paragrah files vs not making them at all

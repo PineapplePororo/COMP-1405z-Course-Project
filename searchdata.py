@@ -4,8 +4,11 @@ import json
 import crawler
 import matmult
 
-dict = json.load(open(os.path.join('crawl', "dict.json"), "r"))
-reverseDict = json.load(open(os.path.join('crawl', "reverseDict.json"), "r"))
+dict = json.load(open(os.path.join('crawl', "0_dict.json"), "r"))
+reverseDict = json.load(open(os.path.join('crawl', "0_reverseDict.json"), "r"))
+incoming = json.load(open(os.path.join('crawl', "0_incoming.json"), "r"))
+twf = json.load(open(os.path.join('crawl', "0_twf.json"), "r"))
+tf = json.load(open(os.path.join('crawl', "0_tf.json"), "r"))
 
 # returns a list of other URLs that the page with the given URL links to
 def get_outgoing_links(url):
@@ -19,11 +22,8 @@ def get_outgoing_links(url):
     # retrieve the name of the folder of the specific url
     folderName = dict[url]    
 
-    # find the path to the folder
-    folderPath = os.path.join('crawl', folderName)
-
-    # find the path to the url file
-    urlFilePath = os.path.join(folderPath, "urls")
+    # find the path to the file
+    urlFilePath = os.path.join('crawl', folderName)
 
     # open file
     urls = open(urlFilePath, "r")
@@ -38,31 +38,12 @@ def get_outgoing_links(url):
 # returns a list of URLs for pages that link to the page with the given URL
 def get_incoming_links(url):
 
-    # a list of urls for pages that link to the given url
-    list = []
 
-    # store the list of all folders in crawl
-    folders = os.listdir("crawl")
-
-    for folder in folders:
-        # find the path to the url file
-        urlFilePath = os.path.join(os.path.join("crawl", folder), "urls")
-
-        # open the url folder
-        urls = open(urlFilePath, "r")
-
-        # check every link to see if it matches the given url
-        for link in urls:
-            if url == link.strip():
-                # matched; add the url of this file's owner to list
-                list.append(reverseDict[folder.split("_")[0]])
-                break
-
-    # if given url was not found during was not found
-    if (len(list) == 0):
+    # if there is no incoming links to url
+    if dict[url].split("_")[0] not in incoming:
         return None
 
-    return list
+    return incoming[url]
 
 
 # omar
@@ -195,83 +176,34 @@ def get_page_rank(url):
     return pageRanks[0][int(dict[url].split("_")[0]) - 1]
 
 
-#print(get_page_rank("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-3.html"))
-#print(len(get_outgoing_links("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")))
+# print(get_page_rank("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-3.html"))
+# print(len(get_outgoing_links("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")))
 
 
 # returns the inverse document frequency of that word within the crawled pages
 def get_idf(word):
 
-    # count of documents word appears in
-    count = 0
-
-    # store the list of all folders in crawl
-    folders = os.listdir("crawl")
-
-    for folder in folders:
-        # check if they are folders (not json files)
-        if os.path.isdir(os.path.join("crawl", folder)):
-            # find the path to the word file
-            wordFilePath = os.path.join(os.path.join("crawl", folder), "words")
-
-            # open the url folder
-            words = open(wordFilePath, "r")
-
-            # check every link to see if it matches the given url
-            for w in words:
-                if word == w.strip():
-                    # matched; increment count
-                    count += 1
-                    break
-
-    # if given url was not found during was not found
-    if (count == 0):
+    if word not in twf:
         return 0
 
-    # math calculation breakdown
-    count += 1
-    temp = len(dict)/count
+    temp = len(dict)/twf[word]
     return math.log(temp, 2)
 
 
 # return the term frequency of that word within the page with the given URL
 def get_tf(url, word):
 
+    key = dict[url].split("_")[0]
+
     # if the url wasn't found in the crawling process
-    if url not in dict:
+    if key not in tf:
         return 0
-
-    # count of number of occurences of w in file
-    wordCount = 0
-    # count of total number of words
-    totalCount = 0
-
-    # retrieve the name of the folder of the specific url
-    folderName = dict[url]
-        
-
-    # find the path to the folder
-    folderPath = os.path.join('crawl', folderName)
-
-    # find the path to the url file
-    wordFilePath = os.path.join(folderPath, "words")
-
-    # open file
-    words = open(wordFilePath, "r")
-
-    # for every word in the file check if it matches with the given word
-    for w in words:
-        if w.strip() == word:
-            # matched; increment 
-            wordCount += 1
-        # increment total count of words in file
-        totalCount += 1
 
     # if the given word does not appear in the page 
-    if (wordCount == 0):
+    if (word not in tf[key]):
         return 0
 
-    return wordCount/totalCount
+    return tf[key][word]
     
 
 # return the tf-idf weight for the given word within the page represented by the given URL
