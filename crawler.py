@@ -146,13 +146,22 @@ def crawl(seed):
         fileOut.close()
         
 
-    # dump to file using json
-    with open(os.path.join('crawl', "dict.json"), 'w') as outfile:
+    # dump to all dictioinaries to files using json
+    with open(os.path.join('crawl', "0_dict.json"), 'w') as outfile:
         json.dump(dict, outfile, indent=4, ensure_ascii=False)
-
-    with open(os.path.join('crawl', "reverseDict.json"), 'w') as outfile:
+        
+    with open(os.path.join('crawl', "0_reverseDict.json"), 'w') as outfile:
         json.dump(reverseDict, outfile, indent=4, ensure_ascii=False)
 
+    with open(os.path.join('crawl', "0_incoming.json"), 'w') as outfile:
+        json.dump(incoming, outfile, indent=4, ensure_ascii=False)
+    
+    with open(os.path.join('crawl', "0_twf.json"), 'w') as outfile:
+        json.dump(twf, outfile, indent=4, ensure_ascii=False)
+    
+    with open(os.path.join('crawl', "0_tf.json"), 'w') as outfile:
+        json.dump(tf, outfile, indent=4, ensure_ascii=False)
+    
     return count 
 
 
