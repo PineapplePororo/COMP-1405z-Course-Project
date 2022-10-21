@@ -5,3 +5,24 @@ What we need:
 0_dict = {url: number+title,...}
 0_reverseDict = {number: url,...}
 0_tf = {0:[{word: frequency/count}, {word: frequency/count}, ...], 1:[{word: frequency/count}, ...],...}
+
+def:
+manageFolder()
+
+queue = [seed]
+count = 1
+
+while(len(queue)> 0):
+
+url = queue.pop()
+
+- extract title
+- dictionary[url] = count + title
+
+go through urls of the link
+
+if dict[link] exists:
+
+else:
+    count++
+    dict[link] = count
