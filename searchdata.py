@@ -159,7 +159,13 @@ def get_tf(url, word):
 
 # return the tf-idf weight for the given word within the page represented by the given URL
 def get_tf_idf(url, word):
-    return math.log(1+get_tf(url, word), 2)*get_idf(word)
+
+    idf = get_idf(word)
+
+    if (idf == 0):
+        return 0
+
+    return math.log(1+get_tf(url, word), 2)*idf
 
 
 '''

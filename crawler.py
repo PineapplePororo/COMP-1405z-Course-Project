@@ -213,11 +213,11 @@ def crawl(seed):
 
 # crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
 
-def time():
-    import time
-    start = time.time()
-    print(crawl('http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html'))
-    end = time.time()
-    print(end - start)
+# def time():
+#     import time
+#     start = time.time()
+#     print(crawl('http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html'))
+#     end = time.time()
+#     print(end - start)
 
-time()
+# time()
