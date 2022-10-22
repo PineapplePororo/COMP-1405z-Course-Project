@@ -162,11 +162,6 @@ def crawl(seed):
 
         # Getting the count for each word in the url and storing as a variable
         for word in words:
-            if word in twf:
-                twf[word] += 1
-            else:
-                twf[word] = 1
-
             if word in uniqueWords:
                 uniqueWords[word] += 1
             else:
@@ -175,6 +170,11 @@ def crawl(seed):
         #Getting the frequency of each word and storing it in the uniquewords dictionary
         for word in uniqueWords:
             uniqueWords[word] = uniqueWords[word]/len(words)
+            
+            if word in twf:
+                twf[word] += 1
+            else:
+                twf[word] = 1
 
         # Adding the uniqueWrods to tf
         tf[dict[currUrl].split("_")[0]] = uniqueWords
