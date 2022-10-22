@@ -38,12 +38,13 @@ def get_outgoing_links(url):
 # returns a list of URLs for pages that link to the page with the given URL
 def get_incoming_links(url):
 
+    numberUrl = dict[url].split("_")[0]
 
     # if there is no incoming links to url
-    if dict[url].split("_")[0] not in incoming:
+    if numberUrl not in incoming:
         return None
 
-    return incoming[url]
+    return incoming[numberUrl]
 
 
 # returns the PageRank value of the page with that URL
@@ -53,44 +54,49 @@ def get_page_rank(url):
     if url not in dict:
         return -1
 
-    pageRank = json.load(open(os.path.join('crawl', "0_pageRank.json"), "r"))
-
     # if the list has already been created
-    if len(pageRank) != 0:
+    if os.path.getsize(os.path.join('crawl', "0_pageRank.json")) != 0:
+        # open file
+        pageRank = json.load(open(os.path.join('crawl', "0_pageRank.json"), "r"))
         # return the corresponding pagerank value of url
+        print("here")
         return pageRank[0][int(dict[url].split("_")[0]) - 1]
     else:
-        # creating n*n Adjacency  matrix
-        adjacencyMat = [[0.0]*len(reverseDict)]*len(reverseDict)
+        # creating an empty adjacency  matrix
+        adjacencyMat = []
 
         # finishing adjacency matrix
         for i in range(len(reverseDict)):
 
+            row = [0.0]*len(reverseDict)
+
             # grab all the links that is linked to the current index of the matrix
             links = get_outgoing_links(reverseDict[str(i + 1)])
-
 
             # if there is no outgoing links
             if len(links) == 0:
                 # for every entry 
-                for col in len(reverseDict):
+                for col in range(len(reverseDict)):
                     # adjacency = have value be 1/N 
                     # then (1-alpha * adjacency) for scaled adjacency matrix
                     # final adjcency matrix: add alpha/N
-                    adjacencyMat[i][col] = ((1/len(reverseDict))*(1-0.1)) + (0.1/len(reverseDict))
+                    row[col] = ((1/len(reverseDict))*(1-0.1)) + (0.1/len(reverseDict))
             # if there are outgoing links
             else:
                 # for all links linked
                 for link in links:
                     # adjacency = find the corresponding column index of the link and set it to 1
                     # then (1-alpha * adjacency) for scaled adjacency matrix
-                    adjacencyMat[i][int(dict[link].split("_")[0])] = (1/len(links))*(1-0.1)
-
+                    row[int(dict[link].split("_")[0])-1] = (1/len(links))*(1-0.1)
                 # for every entry 
-                for col in len(reverseDict):
+                for col in range(len(reverseDict)):
                     # final adjcency matrix: add alpha/N
-                    adjacencyMat[i][col] = adjacencyMat[i][col] + (0.1/len(reverseDict))
-    
+                    row[col] = row[col] + (0.1/len(reverseDict))
+
+            # inserting row to end of adjacency matrix
+            adjacencyMat.insert(i, row)
+
+        
         #POWER ITERATION
         initialValue = [adjacencyMat[0]]
         
@@ -116,9 +122,6 @@ def get_page_rank(url):
         # return the corresponding pagerank value of url
         return curr[0][int(dict[url].split("_")[0]) - 1]
 
-# print(get_page_rank("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-3.html"))
-# print(len(get_outgoing_links("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")))
-
 
 # returns the inverse document frequency of that word within the crawled pages
 def get_idf(word):
@@ -134,6 +137,7 @@ def get_idf(word):
 def get_tf(url, word):
 
     key = dict[url].split("_")[0]
+    print(key)
 
     # if the url wasn't found in the crawling process
     if key not in tf:
@@ -163,16 +167,20 @@ s1 = "http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-1.html"
 s8 = "http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-8.html"
 
 # print(get_outgoing_links(s0))
+# print(get_incoming_links(s0))
+
 
 # # total kiwi : 7
 # print(get_idf("kiwi"))
 
 # # s0, coconut = 3/23
-# print(get_tf(s0, "none"))
+# print(get_tf(s0, "kiwi"))
 
 # # kiwi; idf: log(10/1+7) tf: 2/23
 # print(get_tf_idf(s0, "kiwi"))
 
+# print(get_page_rank("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-3.html"))
+# print(get_page_rank("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"))
 '''
 
 
