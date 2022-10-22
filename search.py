@@ -15,8 +15,6 @@ def search(phrase, boost):
     # contains tf-idf values for all documents 
     docVector = []
     
-    print(words)
-
     # for all documents
     for i in range(len(reverseDict)):
         # temporary storage of tfidf values of a document
@@ -25,13 +23,10 @@ def search(phrase, boost):
         for j in words:
             # store the tfidf of the word 
             row.append(searchdata.get_tf_idf(reverseDict[str(i+1)], j))
-            
-        # print("row: ")
-        # print(row)
         # add row 
         docVector.append(row)
     
-    # list that stores tfidf value of words inputted
+    # list that stores tf-idf value of words inputted
     query = []
 
     # value of tf for phrase
@@ -41,20 +36,6 @@ def search(phrase, boost):
         # tf-idf value for query
         query.append(math.log(1+tf, 2)*searchdata.get_idf(words[i]))
     
-    # print(query)
-    # print(docVector)
-
-    '''
-    - split phrase into list - query
-    - tf-idf of query
-    - tf-idf of documents for all elements
-
-    - cosine similarity
-    - boost is true, call pageRank and mulitply similarity with pageRank
-    - sort
-
-    - top 10 documents of cosine similarity     
-    '''
 
 # crawler.crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
 
