@@ -38,7 +38,7 @@ def search(phrase, boost):
         # tf-idf value for query
         query.append(math.log(1+tf, 2)*searchdata.get_idf(words[i]))
     
-     # COSINE SIMILARITY CODE
+    # COSINE SIMILARITY CODE
 
     cosSimilarity = []
 
