@@ -1,0 +1,7 @@
+
+What we need:
+0_twf = {apple: +1, ...}
+0_incoming = {0:[url, url,...], 1:[url, url,...]...}
+0_dict = {url: number+title,...}
+0_reverseDict = {number: url,...}
+0_tf = {0:{word: frequency/count, word: frequency/count,...}, 1:{word: frequency/count,...},...}
