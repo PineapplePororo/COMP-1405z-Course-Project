@@ -1,6 +1,9 @@
 
 def search(phrase, boost):
 
+    query = []
+    docVector = []
+
     '''
     - split phrase into list - query
     - tf-idf of query
