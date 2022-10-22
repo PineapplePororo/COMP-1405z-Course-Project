@@ -1,0 +1,12 @@
+Passed Test #8 checking IDF for word apricot
+
+expected = 0.0
+result = 0
+
+
+Passed Test #13 checking IDF for word tomato
+
+expected = 0
+result = 0
+
+

@@ -38,6 +38,10 @@ def get_outgoing_links(url):
 # returns a list of URLs for pages that link to the page with the given URL
 def get_incoming_links(url):
 
+    # if url was not found during the crawl process
+    if url not in dict:
+        return None
+
     numberUrl = dict[url].split("_")[0]
 
     # if there is no incoming links to url
@@ -59,7 +63,7 @@ def get_page_rank(url):
         # open file
         pageRank = json.load(open(os.path.join('crawl', "0_pageRank.json"), "r"))
         # return the corresponding pagerank value of url
-        print("here")
+        # print("here")
         return pageRank[0][int(dict[url].split("_")[0]) - 1]
     else:
         # creating an empty adjacency  matrix
@@ -129,15 +133,18 @@ def get_idf(word):
     if word not in twf:
         return 0
 
-    temp = len(dict)/twf[word]
+    temp = len(dict)/(1+twf[word])
     return math.log(temp, 2)
 
 
 # return the term frequency of that word within the page with the given URL
 def get_tf(url, word):
 
+    # if url was not found during the crawl process
+    if url not in dict:
+        return 0
+
     key = dict[url].split("_")[0]
-    print(key)
 
     # if the url wasn't found in the crawling process
     if key not in tf:
