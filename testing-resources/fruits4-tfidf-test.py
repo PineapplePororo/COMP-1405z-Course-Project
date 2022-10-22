@@ -1,13 +1,13 @@
 
 import testingtools
-import crawler
+import crawler2
 import searchdata
 import search
 output = open('fruits4-tfidf-failed.txt', 'w')
 success_output = open('fruits4-tfidf-passed.txt', 'w')
 
 #Performing crawl starting at seed http://people.scs.carleton.ca/~davidmckenney/fruits4/N-0.html
-crawler.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits4/N-0.html')
+crawler2.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits4/N-0.html')
 #Test #0 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits4/N-344.html and word apricot
 expected = 0.010125529995664394
 result = searchdata.get_tf_idf('http://people.scs.carleton.ca/~davidmckenney/fruits4/N-344.html','apricot')

@@ -1,13 +1,13 @@
 
 import testingtools
-import crawler
+import crawler2
 import searchdata
 import search
 output = open('fruits2-incoming-links-failed.txt', 'w')
 success_output = open('fruits2-incoming-links-passed.txt', 'w')
 
 #Performing crawl starting at seed http://people.scs.carleton.ca/~davidmckenney/fruits2/N-0.html
-crawler.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits2/N-0.html')
+crawler2.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits2/N-0.html')
 #Test #0 checking incoming links for URL http://people.scs.carleton.ca/~davidmckenney/fruits2/N-23.html
 expected = ['http://people.scs.carleton.ca/~davidmckenney/fruits2/N-0.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-205.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-104.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-12.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-444.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-266.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-35.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-161.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-89.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-397.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-65.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-45.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-443.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-805.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-39.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-323.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-441.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-310.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-760.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-392.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-459.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-669.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-799.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-25.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-420.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-673.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-777.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits2/N-812.html']
 result = searchdata.get_incoming_links('http://people.scs.carleton.ca/~davidmckenney/fruits2/N-23.html')

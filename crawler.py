@@ -26,8 +26,6 @@ def manageFolder():
     open(os.path.join('crawl', "0_incoming.json"), "w").close()
     open(os.path.join('crawl', "0_twf.json"), "w").close()
     open(os.path.join('crawl', "0_tf.json"), "w").close()
-    # for pagerank
-    open(os.path.join('crawl', "0_pageRank.json"), "w").close()
     
 
 # fuction to create the necessary folder and files
@@ -45,59 +43,105 @@ def createFiles(currentFile):
 
 def crawl(seed):
 
-    # key: the number before the underscore in folder name , key: url
-    reverseDict = {}
-
-    # keeps track of the pages visited (used for runtime efficiency)
-    # it has a url of seed at first
-    dict = {seed:1}
-    # keeps track of urls that have been yet to be parsed through
-    # it has a url of seed at first
+    # Creating a queue to contain all urls to crawl through
     queue = [seed]
-    # keeps track of the number of total pages found & folder name of the specific url
     count = 1
 
-    #total word frequency
+    # Getting the seed's title
+    for i in range(len(seed) - 1, -1, -1):
+            if(seed[i] == "/"):
+                lastSlash = i
+                break
+    
+    # retrieve title 
+    title = seed[lastSlash + 1:].split(".")[0]
+
+    # Creating a dictionary to map all urls to a number {url: number + title}
+    dict = {seed: "1_" + title}
+
+    # Creating reverse dictionary to map all number to a url {number: url }
+    reverseDict = {1:seed}
+
+    manageFolder()
+
     twf = {}
     tf = {}
     incoming = {}
 
-    # check if the main folder that will store all the information is made and empty
-    manageFolder()
+    while(len(queue) >  0):  
+        currUrl = queue.pop()
 
-    while (len(queue) > 0):
+        urlFile = createFiles(dict[currUrl])
 
-        # get the next url to parse through
-        url = queue.pop()
+        page = webdev.read_url(currUrl)
 
-        #finding the abosolute url by finding the last "/" and saving its index
-        lastSlash = 0
-        for i in range(len(url) - 1, -1, -1):
-
-            if(url[i] == "/"):
-                lastSlash = i
-                break
-
-        #saving the absolute url by makign it a substring of the current url from its start until the last "/"
-        absoluteUrl = url[0:lastSlash]
-
-        # retrieve title 
-        title = url[lastSlash + 1:]
-
-        # add to reverse dict
-        reverseDict[dict[url]] = url
-
-        # since value of a key is the title of the folder, add the title to the folder name
-        dict[url] = str(dict[url]) + "_" + title
-        # create folder and files for the url
-        urlFile = createFiles(str(dict[url]))
-
-        page = webdev.read_url(url)
-        
         words = ""
         urls = ""
 
-        uniqueWords = {}
+        # Extracting all urls form the curretn url's page
+        while page.find("</a>") != -1:
+            
+            #Finding the starting portion of the a-tag and the ending portion of the link
+            #Using those values to extract the link itself
+            start = page.find('<a href="') + 9
+            end = page.find('.html">') + 5
+
+            urls += page[start:end] + " "
+
+            #Replacing the tags to prevent it form being read again
+            page = page.replace('href="', "", 1)
+            page = page.replace('.html">', "", 1)
+            page = page.replace('</a>', "", 1)
+
+        urls = urls.split()
+
+        #finding the abosolute url by finding the last "/" and saving its index
+        lastSlash = 0
+        for i in range(len(currUrl) - 1, -1, -1):
+
+            if(currUrl[i] == "/"):
+                lastSlash = i
+                break
+
+       #saving the absolute url by makign it a substring of the current url from its start until the last "/"
+        absoluteUrl = currUrl[0:lastSlash]
+
+        # Writing the urls to a file
+        fileOut = open(urlFile, "w")
+
+        for url in urls:
+            if(url[0] == "."):
+                url = absoluteUrl + url[1:]
+            
+            fileOut.write(url + "\n")
+
+            if url not in dict:
+                
+                #incrementing count
+                count += 1
+
+                #getting the url's title
+                title = ""  
+
+                #getting the last slash of the current url
+                for i in range(len(url) - 1, -1, -1):
+                    if(url[i] == "/"):
+                        lastSlash = i
+                        break
+                
+                # retrieve title 
+                title = url[lastSlash + 1:].split(".")[0]
+
+                #Adding the url to dict
+                dict[url] = str(count) + "_" + title
+
+                #Adding url to reverseDict
+                reverseDict[count] = url
+
+                #appending the url onto the queue
+                queue.append(url)
+        
+        fileOut.close()
 
         # Extracting all words by finding the start and end p-tags and splicing the strings using those
         while page.find("<p>") != -1:
@@ -111,81 +155,50 @@ def crawl(seed):
             page = page.replace("</p>", "", 1)
 
         words = words.split()
+        
+        uniqueWords = {}
 
         # Getting the count for each word in the url and storing as a variable
         for word in words:
             if word in twf:
                 twf[word] += 1
             else:
-                twf[word] = 0
+                twf[word] = 1
 
-            if word in tf:
+            if word in uniqueWords:
                 uniqueWords[word] += 1
             else:
                 uniqueWords[word] = 1
-        
+            
         #Getting the frequency of each word and storing it in the uniquewords dictionary
         for word in uniqueWords:
-            uniqueWords[word] /= len(words) 
-        
-          #Adding the uniques wrods of the current url into the tf dictionary
-        tf[dict[url].split("_")[0]] = uniqueWords
+            uniqueWords[word] = uniqueWords[word]/len(words)
 
-        # Extracting links by finding the starting portion of the a-tag and the end of the link and using those indexes to splice
-        while page.find("</a>") != -1:
-            
-            start = page.find('<a href="') + 9
-            end = page.find('.html">') + 5
+        # Adding the uniqueWrods to tf
+        tf[dict[currUrl].split("_")[0]] = uniqueWords
 
-            urls += page[start:end] + " "
-
-            page = page.replace('href="', "", 1)
-            page = page.replace('.html">', "", 1)
-            page = page.replace('</a>', "", 1)
-
-        urls = urls.split()          
-
-
-        #Writing all the urls to the url files
-        fileOut = open(urlFile, "w")
+        #Incoming links
         for url in urls:
-            if(url[0] == "."):
-                url = absoluteUrl + url[1:len(url)]
             
-            fileOut.write(url + "\n")
+            urlNum = dict[(absoluteUrl + url[1:])].split("_")[0]
 
-            # adding to queue 
-            # check if the url isn't in queue 
-            if url not in dict:
-            
-                # increment count for all succeed crawls
-                count += 1
-
-                # make a new key of the url
-                dict[url] = count
-
-                # add to end of queue
-                queue.append(url)
-
-        fileOut.close()
-
-        #THIS IS THE CODE FOR INCOMING
-        # Getting incoming links for all links in teh crawl
-        for link in urls:
-            if(link in incoming):
-                #appending the url into a list (value) inside the incoming dictionary
-                incoming[dict[str(absoluteUrl + link[1:])].split("_")[0]].append(url)
+            #If the url is already in the incoming dictionary adding the url to the list
+            if urlNum in incoming:
+                # Appending the url into a list inside the dictionary
+                incoming[urlNum].append(currUrl)
             else:
-                #if the incoming list does not already exist, creating it then appending the url into it
-                incoming[dict[str(absoluteUrl + link[1:])].split("_")[0]] = []
-                incoming[dict[str(absoluteUrl + link[1:])].split("_")[0]].append(url)  
+                incoming[urlNum] = []
+                incoming[urlNum].append(currUrl)
 
-    print("\n\n")
-    print(twf)
-    print("\n\n")
-    print(tf)
-    print("\n\n")
-    print(incoming)
+    # print("\n\n")
+    # print(twf)
+    # print("\n\n")
+    # print(tf)
+    # print("\n\n")
+    # for thing in incoming:
+    #     print(thing)
+    #     print(incoming[thing])
+    #     print()
 
     # dump to all dictioinaries to files using json
     with open(os.path.join('crawl', "0_dict.json"), 'w') as outfile:

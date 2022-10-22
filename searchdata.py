@@ -1,7 +1,7 @@
 import math
 import os
 import json
-import crawler
+import crawler2
 import matmult
 
 dict = json.load(open(os.path.join('crawl', "dict.json"), "r"))

@@ -1,13 +1,13 @@
 
 import testingtools
-import crawler
+import crawler2
 import searchdata
 import search
 output = open('fruits4-idf-failed.txt', 'w')
 success_output = open('fruits4-idf-passed.txt', 'w')
 
 #Performing crawl starting at seed http://people.scs.carleton.ca/~davidmckenney/fruits4/N-0.html
-crawler.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits4/N-0.html')
+crawler2.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits4/N-0.html')
 #Test #0 checking IDF for word banana
 expected = 0.16650266314016507
 result = searchdata.get_idf('banana')

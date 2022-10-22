@@ -1,13 +1,13 @@
 
 import testingtools
-import crawler
+import crawler2
 import searchdata
 import search
 output = open('fruits2-page-rank-failed.txt', 'w')
 success_output = open('fruits2-page-rank-passed.txt', 'w')
 
 #Performing crawl starting at seed http://people.scs.carleton.ca/~davidmckenney/fruits2/N-0.html
-crawler.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits2/N-0.html')
+crawler2.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits2/N-0.html')
 #Test #0 checking page rank for URL http://people.scs.carleton.ca/~davidmckenney/fruits2/N-651.html
 expected = 0.0006387651290761105
 result = searchdata.get_page_rank('http://people.scs.carleton.ca/~davidmckenney/fruits2/N-651.html')

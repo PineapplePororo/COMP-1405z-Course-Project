@@ -1,13 +1,13 @@
 
 import testingtools
-import crawler
+import crawler2
 import searchdata
 import search
 output = open('tinyfruits-tf-failed.txt', 'w')
 success_output = open('tinyfruits-tf-passed.txt', 'w')
 
 #Performing crawl starting at seed http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html
-crawler.crawl('http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html')
+crawler2.crawl('http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html')
 #Test #0 checking TF for URL http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-9.html and word apple
 expected = 0.16216216216216217
 result = searchdata.get_tf('http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-9.html','apple')

@@ -1,13 +1,13 @@
 
 import testingtools
-import crawler
+import crawler2
 import searchdata
 import search
 output = open('fruits3-outgoing-links-failed.txt', 'w')
 success_output = open('fruits3-outgoing-links-passed.txt', 'w')
 
 #Performing crawl starting at seed http://people.scs.carleton.ca/~davidmckenney/fruits3/N-0.html
-crawler.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits3/N-0.html')
+crawler2.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits3/N-0.html')
 #Test #0 checking outgoing links for URL http://people.scs.carleton.ca/~davidmckenney/fruits3/N-92.html
 expected = ['http://people.scs.carleton.ca/~davidmckenney/fruits3/N-283.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits3/N-845.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits3/N-854.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits3/N-984.html', 'http://people.scs.carleton.ca/~davidmckenney/fruits3/N-87.html']
 result = searchdata.get_outgoing_links('http://people.scs.carleton.ca/~davidmckenney/fruits3/N-92.html')
