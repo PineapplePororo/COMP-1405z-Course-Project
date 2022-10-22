@@ -31,7 +31,7 @@ result = 0.015886562565125537
 Passed Test #5 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-128.html and word tomato
 
 expected = 0.0
-result = 0.0
+result = 0
 
 
 Passed Test #6 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-722.html and word peach
@@ -67,7 +67,7 @@ result = 0.019443581172158126
 Passed Test #11 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-722.html and word tomato
 
 expected = 0.0
-result = 0.0
+result = 0
 
 
 Passed Test #12 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-871.html and word peach
@@ -103,7 +103,7 @@ result = 0.015886562565125537
 Passed Test #17 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-871.html and word tomato
 
 expected = 0.0
-result = 0.0
+result = 0
 
 
 Passed Test #18 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-444.html and word peach
@@ -139,7 +139,7 @@ result = 0.02286107235814336
 Passed Test #23 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-444.html and word tomato
 
 expected = 0.0
-result = 0.0
+result = 0
 
 
 Passed Test #24 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-178.html and word peach
@@ -175,7 +175,7 @@ result = 0.00792681277814716
 Passed Test #29 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-178.html and word tomato
 
 expected = 0.0
-result = 0.0
+result = 0
 
 
 Passed Test #30 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-226.html and word peach
@@ -211,7 +211,7 @@ result = 0.019055451996668523
 Passed Test #35 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-226.html and word tomato
 
 expected = 0.0
-result = 0.0
+result = 0
 
 
 Passed Test #36 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-196.html and word peach
@@ -247,7 +247,7 @@ result = 0.013120144314836671
 Passed Test #41 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-196.html and word tomato
 
 expected = 0.0
-result = 0.0
+result = 0
 
 
 Passed Test #42 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-894.html and word peach
@@ -283,7 +283,7 @@ result = 0.011756175313239121
 Passed Test #47 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-894.html and word tomato
 
 expected = 0.0
-result = 0.0
+result = 0
 
 
 Passed Test #48 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-629.html and word peach
@@ -319,7 +319,7 @@ result = 0.0234504873846046
 Passed Test #53 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-629.html and word tomato
 
 expected = 0.0
-result = 0.0
+result = 0
 
 
 Passed Test #54 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-259.html and word peach
@@ -355,7 +355,7 @@ result = 0.009180573341547111
 Passed Test #59 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-259.html and word tomato
 
 expected = 0.0
-result = 0.0
+result = 0
 
 
 Passed Test #60 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N.html and word peach
@@ -391,6 +391,6 @@ result = 0.0
 Passed Test #65 checking TF-IDF for URL http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N.html and word tomato
 
 expected = 0.0
-result = 0.0
+result = 0
 
 
