@@ -192,16 +192,6 @@ def crawl(seed):
                 incoming[urlNum] = []
                 incoming[urlNum].append(currUrl)
 
-    # print("\n\n")
-    # print(twf)
-    # print("\n\n")
-    # print(tf)
-    # print("\n\n")
-    # for thing in incoming:
-    #     print(thing)
-    #     print(incoming[thing])
-    #     print()
-
     # dump to all dictioinaries to files using json
     with open(os.path.join('crawl', "0_dict.json"), 'w') as outfile:
         json.dump(dict, outfile, indent=4, ensure_ascii=False)
@@ -223,11 +213,11 @@ def crawl(seed):
 
 # crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
 
-# def time():
-#     import time
-#     start = time.time()
-#     crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
-#     end = time.time()
-#     print(end - start)
+def time():
+    import time
+    start = time.time()
+    print(crawl('http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html'))
+    end = time.time()
+    print(end - start)
 
-# time()
+time()
