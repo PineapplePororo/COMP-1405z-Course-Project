@@ -116,6 +116,8 @@ def search(phrase, boost):
         #Remove the last element
         topSimilarity.pop()
 
+    return topSimilarity
+
     #BUBBLE SORT OR SMTHN
     # for i in range(1, len(cosSimilarity)):
     #     for j in range(i, cosSimilarity):
