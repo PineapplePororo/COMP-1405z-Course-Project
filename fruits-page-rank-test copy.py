@@ -5,7 +5,7 @@ import searchdata
 # import search
 output = open('fruits-page-rank-failed.txt', 'w')
 success_output = open('fruits-page-rank-passed.txt', 'w')
-
+  
 #Performing crawl starting at seed http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html
 crawler.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html')
 #Test #0 checking page rank for URL http://people.scs.carleton.ca/~davidmckenney/fruits/N-491.html
