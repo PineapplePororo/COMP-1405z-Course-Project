@@ -87,8 +87,8 @@ def search(phrase, boost):
 
     total = len(words)
 
-    print("words before: ")
-    print(words)
+    # print("words before: ")
+    # print(words)
 
     sameWord = {}
 
@@ -103,8 +103,8 @@ def search(phrase, boost):
     for word in sameWord:
         words.append(word)
 
-    print("words after: ")
-    print(words)
+    # print("words after: ")
+    # print(words)
 
     # print(sameWord)
     # print("length: " + str(len(sameWord)))
@@ -113,8 +113,8 @@ def search(phrase, boost):
     docVector = []
 
     # idf print
-    for word in words:
-        print(word + ": " + str(searchdata.get_idf(word)))
+    # for word in words:
+    #     print(word + ": " + str(searchdata.get_idf(word)))
 
     # for all documents
     for i in range(len(reverseDict)):
@@ -135,7 +135,7 @@ def search(phrase, boost):
 
     for i in range(len(words)):
         # tf-idf value for query
-        print(words[i])
+        # print(words[i])
         # print("idf query: " + str(searchdata.get_idf(words[i])))
         tf = sameWord[words[i]]/total
         # print("tf: " + str(tf))
@@ -143,10 +143,10 @@ def search(phrase, boost):
         # print("all:" + str(math.log(1+tf, 2)searchdata.get_idf(words[i])))
         query.append(math.log(1+tf, 2)*searchdata.get_idf(words[i]))
 
-    for line in docVector:
-        print(line)
-    print()
-    print(query)
+    # for line in docVector:
+    #     print(line)
+    # print()
+    # print(query)
 
     # COSINE SIMILARITY CODE
     topSimilarity = []
@@ -207,27 +207,27 @@ def search(phrase, boost):
 
     for i in range(len(cosSimilarity)):
 
-        print(cosMap[cosSimilarity[i]])
-        print()
+        # print(cosMap[cosSimilarity[i]])
+        # print()
     
         for j in cosMap[cosSimilarity[i]]:
-            print("THIS IS SEARCH RESULTS: ")
-            print(sentResults)
+            # print("THIS IS SEARCH RESULTS: ")
+            # print(sentResults)
             if(j not in sentResults):
-                print("THIS IS J: " + str(j))        
+                # print("THIS IS J: " + str(j))        
                 url = reverseDict[str(j)]
                 title = dict[url].split("_")[1]
-                print("TITLE: " + title)
+                # print("TITLE: " + title)
                 score = cosSimilarity[i]
                 sentResults.append(j)
                 break
 
         searchResult.append({"url": url, "title": title, "score": score})
 
-    print()
+    # print()
     # print(searchResult)
 
-    return searchResult
+    return searchResult[0:10]
 
     #BUBBLE SORT OR SMTHN
     # for i in range(1, len(cosSimilarity)):
