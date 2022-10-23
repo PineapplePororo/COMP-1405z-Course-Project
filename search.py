@@ -11,6 +11,10 @@ reverseDict = json.load(open(os.path.join('crawl', "0_reverseDict.json"), "r"))
 # return a list of the top 10 ranked search results
 def search(phrase, boost):
 
+    # print("PHRASE: ")
+    # print(phrase)
+
+
     # store words in a list
     words = phrase.split(" ")
 
@@ -39,116 +43,84 @@ def search(phrase, boost):
         query.append(math.log(1+tf, 2)*searchdata.get_idf(words[i]))
     
     # COSINE SIMILARITY CODE
+    topSimilarity = []
+    cosMap = {}
 
-    print(docVector)
-    print()
-    print(query)
+    # calculating left denominator
+    leftDenom = 0
+    for j in range(len(query)):
+        leftDenom += query[j] * query[j]
+
+    leftDenom = math.sqrt(leftDenom)
 
     cosSimilarity = []
-
-    leftDenom = 0
-    # Finding the left denominator sqrt(sumof[q**2])
-        
-    for j in range(len(query)):
-        leftDenom += query[j]**2
-    
-    leftDenom = leftDenom**0.5
-
-    # Finding the cosine similarity for each document
     for i in range(len(docVector)):
         
-        # A dictionary which will store url, title and score
-        cosDict = {}
-
+        #caculating numerator
         numerator = 0
-        #Finding the numerator
+
         for j in range(len(query)):
-            numerator += query[j]  + docVector[i][j]
-    
-      
-        # Finding the right denominator sqrt(sumof[q**2])
+            numerator += query[j] * docVector[i][j]
+        
+        #calculating right denominator
         rightDenom = 0
         for j in range(len(query)):
-            rightDenom += docVector[i][j]**2
-        
-        rightDenom = rightDenom**0.5
+            rightDenom += docVector[i][j]*docVector[i][j]
+        rightDenom = math.sqrt(rightDenom)
 
-        # Getting the url of the cosSimilarity
-        url = searchdata.reverseDict[str(i+1)]
-        # Adding to the dictionary
-        cosDict["url"] = url
-        cosDict["title"] = dict[url].split("_")[1]
+        denominator = rightDenom * leftDenom
 
-        if(numerator == 0 or leftDenom == 0 or rightDenom == 0):
-            cosDict["score"] = 0
+        if(numerator == 0 or denominator == 0):
+                similarity = 0
         else:
+            similarity = numerator/denominator
+
             if(boost):
-                cosDict["score"] =  searchdata.get_page_rank(url) * (numerator/(leftDenom*rightDenom))
-            else:
-                cosDict["score"] = numerator/(leftDenom*rightDenom)
+                pageRank = searchdata.get_page_rank(reverseDict[str(i+1)])
+                similarity *= pageRank
         
-        if(len(cosSimilarity) < 11):
-            cosSimilarity.append(cosDict)
+        cosSimilarity.append(similarity)
+
+        if(similarity not in cosMap):
+            cosMap[similarity] = []
+            cosMap[similarity].append(i + 1)    
         else:
-            #Sort cosSimilarity (using bubble sort technique)
-            for j in range(1, len(cosSimilarity)):
-                for k in range(i, cosSimilarity):
+            cosMap[similarity].append(i+1)
 
-                    curr = cosSimilarity[k]
-                    prev = cosSimilarity[k-1]
 
-                    currVal = curr["score"]
-                    prevVal = prev["score"]
+    cosSimilarity.sort(reverse=True)
 
-                    if(prevVal < currVal):
-                        temp = curr
-                        curr = prev
-                        prev = temp
+    # print("THIS IS THE MAP")
+    # print(cosMap)
+    # print()
 
-            #Remove the last element
-            cosSimilarity.pop()
+    #contains dictionary {url, title, score}
+    searchResult = []
+    sentResults = []
 
-            
-    for thing in cosSimilarity:
-        print(thing)
-    # BOOST CODE
+    for i in range(len(cosSimilarity)):
 
-    # # If there is boost then multiplying the cosine similarity (otherwise leaving it the same)
-    # if(boost):
-    #     for i in range(len(cosSimilarity)):
-    #         cosSimilarity[i]['score'] *= searchdata.get_page_rank(cosSimilarity[i]["url"])
+        print(cosMap[cosSimilarity[i]])
+        print()
+    
+        for j in cosMap[cosSimilarity[i]]:
+            print("THIS IS SEARCH RESULTS: ")
+            print(sentResults)
+            if(j not in sentResults):
+                print("THIS IS J: " + str(j))        
+                url = reverseDict[str(j)]
+                title = dict[url].split("_")[1]
+                print("TITLE: " + title)
+                score = cosSimilarity[i]
+                sentResults.append(j)
+                break
 
-    # # TOP 10 DOCUMENTS
+        searchResult.append({"url": url, "title": title, "score": score})
 
-    # topSimilarity = []
+    print()
+    # print(searchResult)
 
-    # for i in range(10):
-    #     topSimilarity.append(cosSimilarity[i])
-
-    # for i in range(11, len(cosSimilarity)):
-        
-    #     #Add next element to the topSimilarity
-    #     topSimilarity.append(cosSimilarity[i])
-        
-    #     #Sort topSimilarity (using bubble sort technique)
-    #     for j in range(1, len(cosSimilarity)):
-    #         for k in range(i, cosSimilarity):
-
-    #             curr = cosSimilarity[k]
-    #             prev = cosSimilarity[k-1]
-
-    #             currVal = curr["score"]
-    #             prevVal = prev["score"]
-
-    #             if(prevVal < currVal):
-    #                 temp = curr
-    #                 curr = prev
-    #                 prev = temp
-
-    #     #Remove the last element
-    #     topSimilarity.pop()
-
-    return cosSimilarity
+    return searchResult
 
     #BUBBLE SORT OR SMTHN
     # for i in range(1, len(cosSimilarity)):
@@ -165,6 +137,6 @@ def search(phrase, boost):
     #             curr = prev
     #             prev = temp
     
-crawler.crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
+# crawler.crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
 
-search("kiwi banana peach", False)
+# search("kiwi banana peach", False)

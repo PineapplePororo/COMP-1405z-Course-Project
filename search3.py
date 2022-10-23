@@ -11,6 +11,7 @@ reverseDict = json.load(open(os.path.join('crawl', "0_reverseDict.json"), "r"))
 # return a list of the top 10 ranked search results
 def search(phrase, boost):
 
+  
     # store words in a list
     words = phrase.split(" ")
 
