@@ -69,7 +69,7 @@ def search(phrase, boost):
       
         # Finding the right denominator sqrt(sumof[q**2])
         rightDenom = 0
-        for j in range(len(query)):
+        for j in range(len(docVector[i])):
             rightDenom += docVector[i][j]**2
         
         rightDenom = rightDenom**0.5
@@ -83,73 +83,50 @@ def search(phrase, boost):
         if(numerator == 0 or leftDenom*rightDenom == 0):
             cosDict["score"] = 0
         else:
-            if(boost):
-                cosDict["score"] =  searchdata.get_page_rank(url) * (numerator/(leftDenom*rightDenom))
-            else:
-                cosDict["score"] = numerator/(leftDenom*rightDenom)
+            cosDict["score"] =  numerator/(leftDenom*rightDenom)
         
-        if(len(cosSimilarity) < 11):
-            cosSimilarity.append(cosDict)
-        else:
-            #Sort cosSimilarity (using bubble sort technique)
-            for j in range(1, len(cosSimilarity)):
-                for k in range(i, cosSimilarity):
+        # Finding and appending the cosine similarity to the cosSimilarity list
+        cosSimilarity.append(cosDict)
 
-                    curr = cosSimilarity[k]
-                    prev = cosSimilarity[k-1]
-
-                    currVal = curr["score"]
-                    prevVal = prev["score"]
-
-                    if(prevVal < currVal):
-                        temp = curr
-                        curr = prev
-                        prev = temp
-
-            #Remove the last element
-            cosSimilarity.pop()
-
-            
-    for thing in cosSimilarity:
-        print(thing)
     # BOOST CODE
 
-    # # If there is boost then multiplying the cosine similarity (otherwise leaving it the same)
-    # if(boost):
-    #     for i in range(len(cosSimilarity)):
-    #         cosSimilarity[i]['score'] *= searchdata.get_page_rank(cosSimilarity[i]["url"])
+    # If there is boost then multiplying the cosine similarity (otherwise leaving it the same)
+    if(boost):
+        for i in range(len(cosSimilarity)):
+            cosSimilarity[i]['score'] *= searchdata.get_page_rank(cosSimilarity[i]["url"])
 
-    # # TOP 10 DOCUMENTS
+    # TOP 10 DOCUMENTS
 
-    # topSimilarity = []
+    topSimilarity = []
 
-    # for i in range(10):
-    #     topSimilarity.append(cosSimilarity[i])
+    for i in range(10):
+        topSimilarity.append(cosSimilarity[i])
 
-    # for i in range(11, len(cosSimilarity)):
+    for i in range(11, len(cosSimilarity)):
         
-    #     #Add next element to the topSimilarity
-    #     topSimilarity.append(cosSimilarity[i])
+        #Add next element to the topSimilarity
+        topSimilarity.append(cosSimilarity[i])
         
-    #     #Sort topSimilarity (using bubble sort technique)
-    #     for j in range(1, len(cosSimilarity)):
-    #         for k in range(i, cosSimilarity):
+        #Sort topSimilarity (using bubble sort technique)
+        for j in range(1, len(cosSimilarity)):
+            for k in range(i, cosSimilarity):
 
-    #             curr = cosSimilarity[k]
-    #             prev = cosSimilarity[k-1]
+                curr = cosSimilarity[k]
+                prev = cosSimilarity[k-1]
 
-    #             currVal = curr["score"]
-    #             prevVal = prev["score"]
+                currVal = curr["score"]
+                prevVal = prev["score"]
 
-    #             if(prevVal < currVal):
-    #                 temp = curr
-    #                 curr = prev
-    #                 prev = temp
+                if(prevVal < currVal):
+                    temp = curr
+                    curr = prev
+                    prev = temp
 
-    #     #Remove the last element
-    #     topSimilarity.pop()
+        #Remove the last element
+        topSimilarity.pop()
 
-    return cosSimilarity
+    
+    return topSimilarity
 
     #BUBBLE SORT OR SMTHN
     # for i in range(1, len(cosSimilarity)):

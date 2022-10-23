@@ -2,7 +2,7 @@
 import testingtools
 import crawler
 import searchdata
-import search
+import search3
 output = open('fruits-incoming-links-failed.txt', 'w')
 success_output = open('fruits-incoming-links-passed.txt', 'w')
 

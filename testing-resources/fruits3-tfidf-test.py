@@ -2,7 +2,7 @@
 import testingtools
 import crawler
 import searchdata
-import search
+import search3
 output = open('fruits3-tfidf-failed.txt', 'w')
 success_output = open('fruits3-tfidf-passed.txt', 'w')
 
