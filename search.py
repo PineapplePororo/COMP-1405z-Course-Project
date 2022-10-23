@@ -61,7 +61,6 @@ def search(phrase, boost):
         cosDict = {}
 
         numerator = 0
-
         #Finding the numerator
         for j in range(len(query)):
             numerator += query[j]  + docVector[i][j]
@@ -80,7 +79,7 @@ def search(phrase, boost):
         cosDict["url"] = url
         cosDict["title"] = dict[url].split("_")[1]
 
-        if(numerator == 0 or leftDenom*rightDenom == 0):
+        if(numerator == 0 or leftDenom == 0 or rightDenom == 0):
             cosDict["score"] = 0
         else:
             cosDict["score"] =  numerator/(leftDenom*rightDenom)
