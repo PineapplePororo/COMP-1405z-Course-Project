@@ -1,8 +1,8 @@
 import searchdata
 import json
 import os
-import crawler
 import math
+import crawler
 
 dict = json.load(open(os.path.join('crawl', "0_dict.json"), "r"))
 reverseDict = json.load(open(os.path.join('crawl', "0_reverseDict.json"), "r"))
@@ -40,27 +40,33 @@ def search(phrase, boost):
     
     # COSINE SIMILARITY CODE
 
+    print(docVector)
+    print()
+    print(query)
+
     cosSimilarity = []
 
+    leftDenom = 0
+     # Finding the left denominator sqrt(sumof[q**2])
+        
+    for j in range(len(query)):
+        leftDenom += query[j]**2
+    
+    leftDenom = leftDenom**0.5
+
     # Finding the cosine similarity for each document
-    for i in len(docVector):
+    for i in range(len(docVector)):
         
         # A dictionary which will store url, title and score
         cosDict = {}
 
         numerator = 0
 
-        #Finding the denominator
+        #Finding the numerator
         for j in range(len(query)):
             numerator += query[j]  + docVector[i][j]
     
-        # Finding the left denominator sqrt(sumof[q**2])
-        leftDenom = 0
-        for j in range(len(query)):
-            leftDenom += query[j]**2
-        
-        leftDenom = leftDenom**0.5
-
+      
         # Finding the right denominator sqrt(sumof[q**2])
         rightDenom = 0
         for j in range(len(docVector[i])):
@@ -69,12 +75,15 @@ def search(phrase, boost):
         rightDenom = rightDenom**0.5
 
         # Getting the url of the cosSimilarity
-        url = searchdata.reverseDict[i+1]
-
+        url = searchdata.reverseDict[str(i+1)]
         # Adding to the dictionary
         cosDict["url"] = url
         cosDict["title"] = dict[url].split("_")[1]
-        cosDict["score"] =  numerator/(leftDenom*rightDenom)
+
+        if(numerator == 0 or leftDenom*rightDenom == 0):
+            cosDict["score"] = 0
+        else:
+            cosDict["score"] =  numerator/(leftDenom*rightDenom)
         
         # Finding and appending the cosine similarity to the cosSimilarity list
         cosSimilarity.append(cosDict)
@@ -83,7 +92,7 @@ def search(phrase, boost):
 
     # If there is boost then multiplying the cosine similarity (otherwise leaving it the same)
     if(boost):
-        for i in range(cosSimilarity):
+        for i in range(len(cosSimilarity)):
             cosSimilarity[i]['score'] *= searchdata.get_page_rank(cosSimilarity[i]["url"])
 
     # TOP 10 DOCUMENTS
@@ -133,6 +142,6 @@ def search(phrase, boost):
     #             curr = prev
     #             prev = temp
     
-# crawler.crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
+crawler.crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
 
-# search("kiwi banana peach", False)
+search("kiwi banana peach", False)
