@@ -1,4 +1,5 @@
 
+from shutil import copy
 import testingtools
 import crawler
 import searchdata

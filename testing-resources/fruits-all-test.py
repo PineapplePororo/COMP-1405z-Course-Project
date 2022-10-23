@@ -2,7 +2,7 @@
 import testingtools
 import crawler
 import searchdata
-import search
+import search3
 
 #Performing crawl starting at seed http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html
 crawler.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html')
@@ -3880,7 +3880,7 @@ success_output = open('fruits-all-search-passed.txt', 'w')
 
 #Test #291 checking search results for 'peach coconut' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.02099492456728733}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015524735848489709}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013216295889852698}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010158987971029421}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008510726413291102}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.008300270253703926}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007892485331647896}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007554565208180449}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007412250626492393}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006730205640271726}]
-result = search.search('peach coconut',True)
+result = search3.search('peach coconut',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #291 checking search results for 'peach coconut' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -3893,7 +3893,7 @@ else:
 
 #Test #292 checking search results for 'pear banana tomato tomato peach apple banana peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.017895243595845423}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.01393917652903197}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012904704531775961}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010105674565088586}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.00860657573594684}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007818580473401983}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.0077601673431134}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007606137752193702}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006623837178897532}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006394063481214497}]
-result = search.search('pear banana tomato tomato peach apple banana peach',True)
+result = search3.search('pear banana tomato tomato peach apple banana peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #292 checking search results for 'pear banana tomato tomato peach apple banana peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -3906,7 +3906,7 @@ else:
 
 #Test #293 checking search results for 'apple apple banana peach pear tomato tomato' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-527.html', 'title': 'N-527', 'score': 1.0000000000000002}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-716.html', 'title': 'N-716', 'score': 1.0000000000000002}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-524.html', 'title': 'N-524', 'score': 0.9999980650161844}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-133.html', 'title': 'N-133', 'score': 0.9989400211212546}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-951.html', 'title': 'N-951', 'score': 0.9986532265478112}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-273.html', 'title': 'N-273', 'score': 0.9977382351341291}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-715.html', 'title': 'N-715', 'score': 0.9970922893653976}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-610.html', 'title': 'N-610', 'score': 0.9967380196032567}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-518.html', 'title': 'N-518', 'score': 0.9967137961192949}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-217.html', 'title': 'N-217', 'score': 0.9962169438919931}]
-result = search.search('apple apple banana peach pear tomato tomato',False)
+result = search3.search('apple apple banana peach pear tomato tomato',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #293 checking search results for 'apple apple banana peach pear tomato tomato' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -3919,7 +3919,7 @@ else:
 
 #Test #294 checking search results for 'banana peach peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.02084623916649196}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015625883074666478}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012643869829430191}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009449574521113812}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008419899703797177}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007774936676926263}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.0076399872387705485}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007321853566747798}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007061425110590793}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006644539952636676}]
-result = search.search('banana peach peach',True)
+result = search3.search('banana peach peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #294 checking search results for 'banana peach peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -3932,7 +3932,7 @@ else:
 
 #Test #295 checking search results for 'banana peach peach coconut tomato peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.019263232561998363}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014971025362353865}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.011319940651870376}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.008768567457716488}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.00795541834702167}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007201808020460346}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007151297769155847}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.006725902760355549}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.0065817568367193425}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006288441263830484}]
-result = search.search('banana peach peach coconut tomato peach',True)
+result = search3.search('banana peach peach coconut tomato peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #295 checking search results for 'banana peach peach coconut tomato peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -3945,7 +3945,7 @@ else:
 
 #Test #296 checking search results for 'banana peach peach coconut tomato peach' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-31.html', 'title': 'N-31', 'score': 0.9999764120760435}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-931.html', 'title': 'N-931', 'score': 0.9999589495904073}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-679.html', 'title': 'N-679', 'score': 0.999924885974288}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-59.html', 'title': 'N-59', 'score': 0.9938167991652156}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-853.html', 'title': 'N-853', 'score': 0.9932205095217291}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-990.html', 'title': 'N-990', 'score': 0.9912732995057555}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-227.html', 'title': 'N-227', 'score': 0.9910586659482239}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-266.html', 'title': 'N-266', 'score': 0.9894737707765816}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-934.html', 'title': 'N-934', 'score': 0.9888911408520543}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-481.html', 'title': 'N-481', 'score': 0.9886222122273766}]
-result = search.search('banana peach peach coconut tomato peach',False)
+result = search3.search('banana peach peach coconut tomato peach',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #296 checking search results for 'banana peach peach coconut tomato peach' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -3958,7 +3958,7 @@ else:
 
 #Test #297 checking search results for 'tomato coconut peach pear tomato coconut apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-76.html', 'title': 'N-76', 'score': 0.9995047751742977}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-329.html', 'title': 'N-329', 'score': 0.9987875472392461}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-796.html', 'title': 'N-796', 'score': 0.9985359223669154}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-105.html', 'title': 'N-105', 'score': 0.9984365382655309}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-233.html', 'title': 'N-233', 'score': 0.9980988265865693}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-532.html', 'title': 'N-532', 'score': 0.9975009002772312}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-354.html', 'title': 'N-354', 'score': 0.9971830957606921}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-569.html', 'title': 'N-569', 'score': 0.9965822312652086}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-92.html', 'title': 'N-92', 'score': 0.9965018343494766}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-296.html', 'title': 'N-296', 'score': 0.995385735808629}]
-result = search.search('tomato coconut peach pear tomato coconut apple',False)
+result = search3.search('tomato coconut peach pear tomato coconut apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #297 checking search results for 'tomato coconut peach pear tomato coconut apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -3971,7 +3971,7 @@ else:
 
 #Test #298 checking search results for 'peach apple' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.020994924567287326}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015698376531429147}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013385889918798154}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010417067314545846}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008507193563889777}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.008227390811338423}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.008032820186304992}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.00787315571136734}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007248519972589282}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006744943947177922}]
-result = search.search('peach apple',True)
+result = search3.search('peach apple',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #298 checking search results for 'peach apple' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -3984,7 +3984,7 @@ else:
 
 #Test #299 checking search results for 'peach coconut peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.0201915323381759}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015568621717957296}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012128604159223611}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010456425114702638}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008875080909091627}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.008134158943291617}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.00797684967170918}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.0075904713204281785}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007265482055577727}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006650922470212738}]
-result = search.search('peach coconut peach',True)
+result = search3.search('peach coconut peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #299 checking search results for 'peach coconut peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -3997,7 +3997,7 @@ else:
 
 #Test #300 checking search results for 'banana peach coconut tomato peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.019929098689925193}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015548139406075231}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012338295072619063}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.00943260311695852}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008392737953394633}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007725627337417748}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.0076283953847429194}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.00716139339644426}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007104332540543943}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006616463130220537}]
-result = search.search('banana peach coconut tomato peach',True)
+result = search3.search('banana peach coconut tomato peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #300 checking search results for 'banana peach coconut tomato peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4010,7 +4010,7 @@ else:
 
 #Test #301 checking search results for 'peach peach coconut peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.019191205129280565}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015135189796897148}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.01121952006932456}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010301801869511313}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008800836803515365}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.008030895319060745}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.00781141667413937}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007214424824154684}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006905536150323476}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006415828581772962}]
-result = search.search('peach peach coconut peach',True)
+result = search3.search('peach peach coconut peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #301 checking search results for 'peach peach coconut peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4023,7 +4023,7 @@ else:
 
 #Test #302 checking search results for 'banana apple pear coconut apple apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-424.html', 'title': 'N-424', 'score': 0.9979087300308276}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-274.html', 'title': 'N-274', 'score': 0.9923639821311339}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-518.html', 'title': 'N-518', 'score': 0.9897326068347375}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-172.html', 'title': 'N-172', 'score': 0.9891998801191023}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-795.html', 'title': 'N-795', 'score': 0.9888294826380608}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-748.html', 'title': 'N-748', 'score': 0.9881447489757941}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-679.html', 'title': 'N-679', 'score': 0.9873445503442467}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-305.html', 'title': 'N-305', 'score': 0.9865419172826172}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-556.html', 'title': 'N-556', 'score': 0.9843796050986671}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-610.html', 'title': 'N-610', 'score': 0.9838795503055123}]
-result = search.search('banana apple pear coconut apple apple',False)
+result = search3.search('banana apple pear coconut apple apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #302 checking search results for 'banana apple pear coconut apple apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4036,7 +4036,7 @@ else:
 
 #Test #303 checking search results for 'peach peach banana' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.02084623916649196}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015625883074666478}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012643869829430191}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009449574521113812}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008419899703797177}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007774936676926263}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.0076399872387705485}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007321853566747798}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007061425110590793}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006644539952636676}]
-result = search.search('peach peach banana',True)
+result = search3.search('peach peach banana',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #303 checking search results for 'peach peach banana' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4049,7 +4049,7 @@ else:
 
 #Test #304 checking search results for 'apple pear peach peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.019178513309742618}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014720462919386786}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.0128228785868486}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.00987180736666412}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008482622488578007}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007738243476914324}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007694959288013001}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007621763880118829}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006617085377757683}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006523509573146742}]
-result = search.search('apple pear peach peach',True)
+result = search3.search('apple pear peach peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #304 checking search results for 'apple pear peach peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4062,7 +4062,7 @@ else:
 
 #Test #305 checking search results for 'apple peach peach banana tomato' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.019913795422719482}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.01518054121634502}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012680615206329153}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009565836205192815}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008394209783791264}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007711668466722501}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007617428122574796}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007422301836681493}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006631490119138914}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.0065988595666396505}]
-result = search.search('apple peach peach banana tomato',True)
+result = search3.search('apple peach peach banana tomato',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #305 checking search results for 'apple peach peach banana tomato' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4075,7 +4075,7 @@ else:
 
 #Test #306 checking search results for 'peach coconut' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.02099492456728733}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015524735848489709}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013216295889852698}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010158987971029421}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008510726413291102}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.008300270253703926}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007892485331647896}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007554565208180449}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007412250626492393}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006730205640271726}]
-result = search.search('peach coconut',True)
+result = search3.search('peach coconut',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #306 checking search results for 'peach coconut' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4088,7 +4088,7 @@ else:
 
 #Test #307 checking search results for 'peach peach apple coconut peach peach peach peach' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-694.html', 'title': 'N-694', 'score': 0.9955029377675804}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-537.html', 'title': 'N-537', 'score': 0.9944349280361986}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-255.html', 'title': 'N-255', 'score': 0.9828211603056004}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-408.html', 'title': 'N-408', 'score': 0.9819979223125823}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-466.html', 'title': 'N-466', 'score': 0.9819608567396557}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-545.html', 'title': 'N-545', 'score': 0.9808455639665976}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-851.html', 'title': 'N-851', 'score': 0.9784528074197316}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-346.html', 'title': 'N-346', 'score': 0.9681027695070002}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-348.html', 'title': 'N-348', 'score': 0.9653660643510003}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-419.html', 'title': 'N-419', 'score': 0.9637662444159119}]
-result = search.search('peach peach apple coconut peach peach peach peach',False)
+result = search3.search('peach peach apple coconut peach peach peach peach',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #307 checking search results for 'peach peach apple coconut peach peach peach peach' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4101,7 +4101,7 @@ else:
 
 #Test #308 checking search results for 'banana pear apple banana banana' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-378.html', 'title': 'N-378', 'score': 0.9999923938902627}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-348.html', 'title': 'N-348', 'score': 0.9999798203324569}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-887.html', 'title': 'N-887', 'score': 0.9999371619676191}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-419.html', 'title': 'N-419', 'score': 0.9998239728691435}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-759.html', 'title': 'N-759', 'score': 0.9998239728691435}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-504.html', 'title': 'N-504', 'score': 0.9993034438355489}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-638.html', 'title': 'N-638', 'score': 0.998651916614329}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-877.html', 'title': 'N-877', 'score': 0.998030442026512}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-466.html', 'title': 'N-466', 'score': 0.9964852503402707}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-485.html', 'title': 'N-485', 'score': 0.9964031291270531}]
-result = search.search('banana pear apple banana banana',False)
+result = search3.search('banana pear apple banana banana',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #308 checking search results for 'banana pear apple banana banana' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4114,7 +4114,7 @@ else:
 
 #Test #309 checking search results for 'apple peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.020994924567287326}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015698376531429147}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013385889918798154}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010417067314545846}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008507193563889777}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.008227390811338423}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.008032820186304992}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.00787315571136734}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007248519972589282}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006744943947177922}]
-result = search.search('apple peach',True)
+result = search3.search('apple peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #309 checking search results for 'apple peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4127,7 +4127,7 @@ else:
 
 #Test #310 checking search results for 'peach peach banana pear tomato banana pear coconut' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.016676753915358732}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.01518682559833941}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012548961455819907}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.01021859044692909}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008871167159582888}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.008239072806242214}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007918811949842383}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007487789600351893}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007426400568641423}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006637032181786938}]
-result = search.search('peach peach banana pear tomato banana pear coconut',True)
+result = search3.search('peach peach banana pear tomato banana pear coconut',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #310 checking search results for 'peach peach banana pear tomato banana pear coconut' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4140,7 +4140,7 @@ else:
 
 #Test #311 checking search results for 'tomato peach coconut peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.02013186977839246}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015547289199447291}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012070261581087148}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010452063178239563}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.0088755402631478}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.00811598274558078}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007986081230316378}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007568042762686509}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007244013786095432}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006638163346603311}]
-result = search.search('tomato peach coconut peach',True)
+result = search3.search('tomato peach coconut peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #311 checking search results for 'tomato peach coconut peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4153,7 +4153,7 @@ else:
 
 #Test #312 checking search results for 'banana peach coconut peach apple' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.01980960407975694}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015263544149348473}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012521309510177995}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009560950687388003}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008423796291291124}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007714896818881797}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007658453957749874}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007309335618708798}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006764141937409491}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006613954698047577}]
-result = search.search('banana peach coconut peach apple',True)
+result = search3.search('banana peach coconut peach apple',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #312 checking search results for 'banana peach coconut peach apple' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4166,7 +4166,7 @@ else:
 
 #Test #313 checking search results for 'coconut banana peach peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.01994607735513016}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.01556403108786007}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012376632176457953}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.00945665552716443}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008407091337731298}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007746725522498257}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.00764277729198535}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007176502495456641}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007123478471415808}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.00662701012806181}]
-result = search.search('coconut banana peach peach',True)
+result = search3.search('coconut banana peach peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #313 checking search results for 'coconut banana peach peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4179,7 +4179,7 @@ else:
 
 #Test #314 checking search results for 'apple pear tomato banana peach tomato peach apple' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.020561043673030358}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014770004556331602}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012621430124485224}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009732842888441964}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.007793961993014412}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.00778488890390411}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007696672592600446}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007367707118291827}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007189016765152486}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006447385284825337}]
-result = search.search('apple pear tomato banana peach tomato peach apple',True)
+result = search3.search('apple pear tomato banana peach tomato peach apple',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #314 checking search results for 'apple pear tomato banana peach tomato peach apple' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4192,7 +4192,7 @@ else:
 
 #Test #315 checking search results for 'peach coconut tomato banana pear coconut' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-329.html', 'title': 'N-329', 'score': 0.9999997735308108}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-527.html', 'title': 'N-527', 'score': 0.9999911122299763}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-716.html', 'title': 'N-716', 'score': 0.9999911122299763}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-796.html', 'title': 'N-796', 'score': 0.9984408235572477}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-127.html', 'title': 'N-127', 'score': 0.9978838759671222}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-233.html', 'title': 'N-233', 'score': 0.9968537839795928}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-935.html', 'title': 'N-935', 'score': 0.9967801905024776}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-508.html', 'title': 'N-508', 'score': 0.9961522319260571}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-683.html', 'title': 'N-683', 'score': 0.996129070653888}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-569.html', 'title': 'N-569', 'score': 0.9960927424862462}]
-result = search.search('peach coconut tomato banana pear coconut',False)
+result = search3.search('peach coconut tomato banana pear coconut',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #315 checking search results for 'peach coconut tomato banana pear coconut' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4205,7 +4205,7 @@ else:
 
 #Test #316 checking search results for 'tomato peach tomato pear banana tomato peach tomato' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.0202989823449972}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014633508204579402}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012624340752545957}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009523347034923621}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008374424847295989}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007747994301451238}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007601009061884632}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007384085354856829}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006921775182723887}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006507054851355943}]
-result = search.search('tomato peach tomato pear banana tomato peach tomato',True)
+result = search3.search('tomato peach tomato pear banana tomato peach tomato',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #316 checking search results for 'tomato peach tomato pear banana tomato peach tomato' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4218,7 +4218,7 @@ else:
 
 #Test #317 checking search results for 'banana peach pear banana coconut apple peach pear' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.016480018488994913}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.01492103781097902}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012534694638650553}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.00994529020262707}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008871498358358248}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007992252161381086}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007817441967241478}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.0074217398764181465}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006863820061878064}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.0065630372295199715}]
-result = search.search('banana peach pear banana coconut apple peach pear',True)
+result = search3.search('banana peach pear banana coconut apple peach pear',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #317 checking search results for 'banana peach pear banana coconut apple peach pear' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4231,7 +4231,7 @@ else:
 
 #Test #318 checking search results for 'apple peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.020994924567287326}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015698376531429147}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013385889918798154}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010417067314545846}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008507193563889777}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.008227390811338423}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.008032820186304992}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.00787315571136734}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007248519972589282}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006744943947177922}]
-result = search.search('apple peach',True)
+result = search3.search('apple peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #318 checking search results for 'apple peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4244,7 +4244,7 @@ else:
 
 #Test #319 checking search results for 'banana banana banana pear banana banana coconut apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-759.html', 'title': 'N-759', 'score': 0.9869632583557562}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-348.html', 'title': 'N-348', 'score': 0.9865824050164348}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-887.html', 'title': 'N-887', 'score': 0.9855725067805196}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-69.html', 'title': 'N-69', 'score': 0.98533788591605}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-466.html', 'title': 'N-466', 'score': 0.9846401802845892}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-944.html', 'title': 'N-944', 'score': 0.977762518713738}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-489.html', 'title': 'N-489', 'score': 0.9744721988796584}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-419.html', 'title': 'N-419', 'score': 0.9697681526760809}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-212.html', 'title': 'N-212', 'score': 0.9674836632623921}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-638.html', 'title': 'N-638', 'score': 0.961209204070931}]
-result = search.search('banana banana banana pear banana banana coconut apple',False)
+result = search3.search('banana banana banana pear banana banana coconut apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #319 checking search results for 'banana banana banana pear banana banana coconut apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4257,7 +4257,7 @@ else:
 
 #Test #320 checking search results for 'peach tomato pear tomato' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.01735781777758059}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015607807888514189}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013385889918798154}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010421326325841605}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008873633543065486}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.0082508053526444}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.008032820186304992}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007799885382063103}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007470358888222109}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.0067615789780501355}]
-result = search.search('peach tomato pear tomato',True)
+result = search3.search('peach tomato pear tomato',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #320 checking search results for 'peach tomato pear tomato' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4270,7 +4270,7 @@ else:
 
 #Test #321 checking search results for 'apple coconut apple apple tomato pear peach' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-748.html', 'title': 'N-748', 'score': 0.9979158173561157}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-518.html', 'title': 'N-518', 'score': 0.9961778000641596}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-274.html', 'title': 'N-274', 'score': 0.9917156683361443}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-188.html', 'title': 'N-188', 'score': 0.9916964845958847}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-795.html', 'title': 'N-795', 'score': 0.9915123473849354}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-556.html', 'title': 'N-556', 'score': 0.9904636727420999}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-433.html', 'title': 'N-433', 'score': 0.9889410666646409}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-64.html', 'title': 'N-64', 'score': 0.9888468168094845}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-217.html', 'title': 'N-217', 'score': 0.9887243051178297}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-424.html', 'title': 'N-424', 'score': 0.9872512719107531}]
-result = search.search('apple coconut apple apple tomato pear peach',False)
+result = search3.search('apple coconut apple apple tomato pear peach',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #321 checking search results for 'apple coconut apple apple tomato pear peach' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4283,7 +4283,7 @@ else:
 
 #Test #322 checking search results for 'peach coconut peach apple apple pear pear' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.018103893734594194}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015572145851558026}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012429651781445382}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010344715924782137}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008598305396802838}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.008231092645953153}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.008019076082376952}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007511417797740448}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007339515451633777}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006656813551930731}]
-result = search.search('peach coconut peach apple apple pear pear',True)
+result = search3.search('peach coconut peach apple apple pear pear',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #322 checking search results for 'peach coconut peach apple apple pear pear' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4296,7 +4296,7 @@ else:
 
 #Test #323 checking search results for 'coconut tomato peach tomato pear peach apple' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.0191897635605327}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014773832828788351}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012472834545792849}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009867303831618872}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008491912240188162}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.00767560101999541}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.0076337892594222695}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007573835369089038}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006697183783763757}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006533377603048385}]
-result = search.search('coconut tomato peach tomato pear peach apple',True)
+result = search3.search('coconut tomato peach tomato pear peach apple',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #323 checking search results for 'coconut tomato peach tomato pear peach apple' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4309,7 +4309,7 @@ else:
 
 #Test #324 checking search results for 'coconut tomato peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.02099492456728733}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015524735848489705}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013216295889852698}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010158987971029423}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008510726413291102}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.008300270253703926}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007892485331647896}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007554565208180447}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007412250626492393}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006730205640271726}]
-result = search.search('coconut tomato peach',True)
+result = search3.search('coconut tomato peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #324 checking search results for 'coconut tomato peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4322,7 +4322,7 @@ else:
 
 #Test #325 checking search results for 'banana banana coconut peach apple banana' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-638.html', 'title': 'N-638', 'score': 0.9924030881920995}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-887.html', 'title': 'N-887', 'score': 0.9915452048198747}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-313.html', 'title': 'N-313', 'score': 0.9895675646995399}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-90.html', 'title': 'N-90', 'score': 0.9892366083352108}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-284.html', 'title': 'N-284', 'score': 0.9886099876243117}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-212.html', 'title': 'N-212', 'score': 0.9883997724545991}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-915.html', 'title': 'N-915', 'score': 0.9856337444346667}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-240.html', 'title': 'N-240', 'score': 0.9854068336275925}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-69.html', 'title': 'N-69', 'score': 0.9851113043275028}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-535.html', 'title': 'N-535', 'score': 0.9830643626318121}]
-result = search.search('banana banana coconut peach apple banana',False)
+result = search3.search('banana banana coconut peach apple banana',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #325 checking search results for 'banana banana coconut peach apple banana' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4335,7 +4335,7 @@ else:
 
 #Test #326 checking search results for 'peach apple' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.020994924567287326}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015698376531429147}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013385889918798154}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010417067314545846}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008507193563889777}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.008227390811338423}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.008032820186304992}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.00787315571136734}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007248519972589282}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006744943947177922}]
-result = search.search('peach apple',True)
+result = search3.search('peach apple',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #326 checking search results for 'peach apple' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4348,7 +4348,7 @@ else:
 
 #Test #327 checking search results for 'pear apple pear banana apple peach apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-310.html', 'title': 'N-310', 'score': 0.9981134671676664}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-657.html', 'title': 'N-657', 'score': 0.9973159562111288}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-158.html', 'title': 'N-158', 'score': 0.9946899077312469}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-102.html', 'title': 'N-102', 'score': 0.9946506903292601}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-274.html', 'title': 'N-274', 'score': 0.9939836976686375}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-205.html', 'title': 'N-205', 'score': 0.9926607119819444}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-859.html', 'title': 'N-859', 'score': 0.9916116943158698}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-544.html', 'title': 'N-544', 'score': 0.9906977080599635}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-934.html', 'title': 'N-934', 'score': 0.9906781995963926}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-189.html', 'title': 'N-189', 'score': 0.9902547976285484}]
-result = search.search('pear apple pear banana apple peach apple',False)
+result = search3.search('pear apple pear banana apple peach apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #327 checking search results for 'pear apple pear banana apple peach apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4361,7 +4361,7 @@ else:
 
 #Test #328 checking search results for 'coconut apple coconut coconut banana coconut' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-647.html', 'title': 'N-647', 'score': 0.999723187608747}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-634.html', 'title': 'N-634', 'score': 0.9988275322696596}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-473.html', 'title': 'N-473', 'score': 0.9975214795321}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-353.html', 'title': 'N-353', 'score': 0.9964155825850566}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-107.html', 'title': 'N-107', 'score': 0.9961787734631828}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-86.html', 'title': 'N-86', 'score': 0.9957270343824534}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-916.html', 'title': 'N-916', 'score': 0.9938936935288144}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-750.html', 'title': 'N-750', 'score': 0.991785778285083}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-248.html', 'title': 'N-248', 'score': 0.9915855821457372}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-628.html', 'title': 'N-628', 'score': 0.9907532121231901}]
-result = search.search('coconut apple coconut coconut banana coconut',False)
+result = search3.search('coconut apple coconut coconut banana coconut',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #328 checking search results for 'coconut apple coconut coconut banana coconut' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4374,7 +4374,7 @@ else:
 
 #Test #329 checking search results for 'coconut pear banana apple peach peach pear banana' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.016480018488994913}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.01492103781097902}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012534694638650557}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.00994529020262707}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008871498358358248}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007992252161381087}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007817441967241478}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.0074217398764181465}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006863820061878065}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006563037229519969}]
-result = search.search('coconut pear banana apple peach peach pear banana',True)
+result = search3.search('coconut pear banana apple peach peach pear banana',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #329 checking search results for 'coconut pear banana apple peach peach pear banana' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4387,7 +4387,7 @@ else:
 
 #Test #330 checking search results for 'tomato pear banana tomato peach peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.020265917722930637}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014664712225896133}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012656863112068274}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009550661772807514}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.00839609343073485}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007758808725598633}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007626010498045943}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007406146949837069}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006943873273638172}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006519973687301995}]
-result = search.search('tomato pear banana tomato peach peach',True)
+result = search3.search('tomato pear banana tomato peach peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #330 checking search results for 'tomato pear banana tomato peach peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4400,7 +4400,7 @@ else:
 
 #Test #331 checking search results for 'banana tomato apple peach pear peach pear tomato' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.01712454643049361}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015361090390081286}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012621430124485224}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009220464246703393}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008489578213513746}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.0077264673729491645}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007507317034257534}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007367707118291826}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006771038776786627}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006593344383491017}]
-result = search.search('banana tomato apple peach pear peach pear tomato',True)
+result = search3.search('banana tomato apple peach pear peach pear tomato',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #331 checking search results for 'banana tomato apple peach pear peach pear tomato' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4413,7 +4413,7 @@ else:
 
 #Test #332 checking search results for 'peach peach banana tomato tomato tomato' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.020898121186926345}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015587063157889077}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012539375529035132}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.00934367792817346}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008353062480868338}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007741644560171998}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.0075622220466543}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007243873235448062}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006997767032953412}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006613951664367636}]
-result = search.search('peach peach banana tomato tomato tomato',True)
+result = search3.search('peach peach banana tomato tomato tomato',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #332 checking search results for 'peach peach banana tomato tomato tomato' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4426,7 +4426,7 @@ else:
 
 #Test #333 checking search results for 'peach peach banana' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.02084623916649196}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015625883074666478}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012643869829430191}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009449574521113812}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008419899703797177}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007774936676926263}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.0076399872387705485}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007321853566747798}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007061425110590793}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006644539952636676}]
-result = search.search('peach peach banana',True)
+result = search3.search('peach peach banana',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #333 checking search results for 'peach peach banana' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4439,7 +4439,7 @@ else:
 
 #Test #334 checking search results for 'peach pear apple tomato apple apple tomato' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-188.html', 'title': 'N-188', 'score': 0.9999957846057485}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-570.html', 'title': 'N-570', 'score': 0.9997550911156046}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-433.html', 'title': 'N-433', 'score': 0.9996668466785874}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-748.html', 'title': 'N-748', 'score': 0.9987854110989463}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-781.html', 'title': 'N-781', 'score': 0.9980792489481389}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-375.html', 'title': 'N-375', 'score': 0.9978369231293158}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-113.html', 'title': 'N-113', 'score': 0.9966218934019153}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-518.html', 'title': 'N-518', 'score': 0.996384977729776}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-74.html', 'title': 'N-74', 'score': 0.9960542431570496}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-663.html', 'title': 'N-663', 'score': 0.9958611178813179}]
-result = search.search('peach pear apple tomato apple apple tomato',False)
+result = search3.search('peach pear apple tomato apple apple tomato',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #334 checking search results for 'peach pear apple tomato apple apple tomato' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4452,7 +4452,7 @@ else:
 
 #Test #335 checking search results for 'apple peach coconut peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.020108874318977968}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015182736411680768}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012362877989198098}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009786946584125237}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.00887554026285679}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.0076995653955578645}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007628748088830883}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007615561561707664}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006606300661107939}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006570919988620426}]
-result = search.search('apple peach coconut peach',True)
+result = search3.search('apple peach coconut peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #335 checking search results for 'apple peach coconut peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4465,7 +4465,7 @@ else:
 
 #Test #336 checking search results for 'apple apple coconut banana tomato peach peach pear' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.019864392417071934}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.01486295493336122}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012330703044182571}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009766668503940928}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.007878344837289789}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007838259610866467}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007570730437400947}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007336301958112876}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007225815350107827}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006459179119213989}]
-result = search.search('apple apple coconut banana tomato peach peach pear',True)
+result = search3.search('apple apple coconut banana tomato peach peach pear',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #336 checking search results for 'apple apple coconut banana tomato peach peach pear' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4478,7 +4478,7 @@ else:
 
 #Test #337 checking search results for 'peach tomato pear banana apple pear tomato banana' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-535.html', 'title': 'N-535', 'score': 0.9989799728275869}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-966.html', 'title': 'N-966', 'score': 0.9986125958195095}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-690.html', 'title': 'N-690', 'score': 0.9983587850907406}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-351.html', 'title': 'N-351', 'score': 0.9982101369183451}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-214.html', 'title': 'N-214', 'score': 0.9977864434905772}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-609.html', 'title': 'N-609', 'score': 0.996401080068423}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-948.html', 'title': 'N-948', 'score': 0.9960920421902402}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-699.html', 'title': 'N-699', 'score': 0.99590684256902}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-345.html', 'title': 'N-345', 'score': 0.9950208133612236}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-394.html', 'title': 'N-394', 'score': 0.9949423054363845}]
-result = search.search('peach tomato pear banana apple pear tomato banana',False)
+result = search3.search('peach tomato pear banana apple pear tomato banana',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #337 checking search results for 'peach tomato pear banana apple pear tomato banana' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4491,7 +4491,7 @@ else:
 
 #Test #338 checking search results for 'peach coconut apple coconut pear' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-76.html', 'title': 'N-76', 'score': 0.9995969329171027}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-329.html', 'title': 'N-329', 'score': 0.9989968972862464}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-105.html', 'title': 'N-105', 'score': 0.9986610713300162}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-796.html', 'title': 'N-796', 'score': 0.9983592106328126}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-233.html', 'title': 'N-233', 'score': 0.9983260627527692}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-354.html', 'title': 'N-354', 'score': 0.9978689749912247}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-532.html', 'title': 'N-532', 'score': 0.9975720694247544}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-92.html', 'title': 'N-92', 'score': 0.996511954883613}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-569.html', 'title': 'N-569', 'score': 0.9963236074788717}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-296.html', 'title': 'N-296', 'score': 0.9960932470196479}]
-result = search.search('peach coconut apple coconut pear',False)
+result = search3.search('peach coconut apple coconut pear',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #338 checking search results for 'peach coconut apple coconut pear' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4504,7 +4504,7 @@ else:
 
 #Test #339 checking search results for 'coconut peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.02099492456728733}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015524735848489709}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013216295889852698}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010158987971029421}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008510726413291102}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.008300270253703926}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007892485331647896}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007554565208180449}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007412250626492393}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006730205640271726}]
-result = search.search('coconut peach',True)
+result = search3.search('coconut peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #339 checking search results for 'coconut peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4517,7 +4517,7 @@ else:
 
 #Test #340 checking search results for 'peach pear tomato peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.020004747184698784}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014479904652107195}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012830296506182757}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010255212123151234}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008452875003805163}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007819833176572918}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.0076994107523929755}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007606010897836154}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006839598180405214}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006480933555005995}]
-result = search.search('peach pear tomato peach',True)
+result = search3.search('peach pear tomato peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #340 checking search results for 'peach pear tomato peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4530,7 +4530,7 @@ else:
 
 #Test #341 checking search results for 'pear apple peach peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.019178513309742618}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014720462919386786}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.0128228785868486}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.00987180736666412}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008482622488578007}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007738243476914324}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007694959288013001}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007621763880118829}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006617085377757683}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006523509573146742}]
-result = search.search('pear apple peach peach',True)
+result = search3.search('pear apple peach peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #341 checking search results for 'pear apple peach peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4543,7 +4543,7 @@ else:
 
 #Test #342 checking search results for 'banana peach peach banana banana coconut peach tomato' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.01709598324305794}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014761711201912593}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.011862129680201007}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010311501780493698}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.0088281698040057}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.00806434179396728}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007955920812405133}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007202819388922532}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007188767024628172}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006407509820051279}]
-result = search.search('banana peach peach banana banana coconut peach tomato',True)
+result = search3.search('banana peach peach banana banana coconut peach tomato',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #342 checking search results for 'banana peach peach banana banana coconut peach tomato' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4556,7 +4556,7 @@ else:
 
 #Test #343 checking search results for 'tomato pear peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.01735781777758059}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015607807888514185}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013385889918798154}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010421326325841602}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008873633543065484}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.0082508053526444}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.008032820186304992}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007799885382063103}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007470358888222108}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.0067615789780501355}]
-result = search.search('tomato pear peach',True)
+result = search3.search('tomato pear peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #343 checking search results for 'tomato pear peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4569,7 +4569,7 @@ else:
 
 #Test #344 checking search results for 'banana peach coconut apple banana apple apple pear' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-748.html', 'title': 'N-748', 'score': 0.9929764042867817}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-294.html', 'title': 'N-294', 'score': 0.9894509786265963}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-949.html', 'title': 'N-949', 'score': 0.9890065618710074}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-518.html', 'title': 'N-518', 'score': 0.9888746310638502}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-217.html', 'title': 'N-217', 'score': 0.9886747969503082}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-433.html', 'title': 'N-433', 'score': 0.9885213649216982}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-271.html', 'title': 'N-271', 'score': 0.9845792740288246}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-603.html', 'title': 'N-603', 'score': 0.9839960582872329}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-652.html', 'title': 'N-652', 'score': 0.9834796082181069}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-140.html', 'title': 'N-140', 'score': 0.9803105257154069}]
-result = search.search('banana peach coconut apple banana apple apple pear',False)
+result = search3.search('banana peach coconut apple banana apple apple pear',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #344 checking search results for 'banana peach coconut apple banana apple apple pear' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4582,7 +4582,7 @@ else:
 
 #Test #345 checking search results for 'peach pear tomato' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.01735781777758059}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015607807888514185}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013385889918798154}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010421326325841602}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008873633543065484}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.0082508053526444}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.008032820186304992}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007799885382063103}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007470358888222108}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.0067615789780501355}]
-result = search.search('peach pear tomato',True)
+result = search3.search('peach pear tomato',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #345 checking search results for 'peach pear tomato' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4595,7 +4595,7 @@ else:
 
 #Test #346 checking search results for 'tomato peach tomato peach tomato apple banana tomato' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.019881127694071053}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015137152100452573}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012624340752545957}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.00951068399858362}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008369310098560135}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007689412089860333}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007573340493278918}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007384085354856829}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.0065885421991189715}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006579207693047792}]
-result = search.search('tomato peach tomato peach tomato apple banana tomato',True)
+result = search3.search('tomato peach tomato peach tomato apple banana tomato',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #346 checking search results for 'tomato peach tomato peach tomato apple banana tomato' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4608,7 +4608,7 @@ else:
 
 #Test #347 checking search results for 'peach peach coconut tomato' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.02013186977839246}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015547289199447291}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012070261581087148}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010452063178239563}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.0088755402631478}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.00811598274558078}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007986081230316378}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007568042762686509}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007244013786095432}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006638163346603311}]
-result = search.search('peach peach coconut tomato',True)
+result = search3.search('peach peach coconut tomato',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #347 checking search results for 'peach peach coconut tomato' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4621,7 +4621,7 @@ else:
 
 #Test #348 checking search results for 'banana banana peach peach peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.02041769321332317}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015695295563845506}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.013067418062178126}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009905874726749813}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008688136060936253}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007969433357186959}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.00787973349031283}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007654941023042055}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007324610994237839}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006744840464271905}]
-result = search.search('banana banana peach peach peach',True)
+result = search3.search('banana banana peach peach peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #348 checking search results for 'banana banana peach peach peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4634,7 +4634,7 @@ else:
 
 #Test #349 checking search results for 'peach tomato peach banana apple apple pear' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.020550599585527584}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.01478201196540524}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012634113157543704}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009742180499979701}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.007805455065996239}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007792979813850965}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007701484261531662}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007376485251085901}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007193779796854369}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006452981967525513}]
-result = search.search('peach tomato peach banana apple apple pear',True)
+result = search3.search('peach tomato peach banana apple apple pear',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #349 checking search results for 'peach tomato peach banana apple apple pear' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4647,7 +4647,7 @@ else:
 
 #Test #350 checking search results for 'apple peach peach peach banana apple apple coconut' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.019716104050318088}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015098018479525565}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.011372230438267798}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009202631231994461}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007523643976406805}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.007422256801584987}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007161063022035459}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.007031699459630415}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.006931815010802461}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006254547931501422}]
-result = search.search('apple peach peach peach banana apple apple coconut',True)
+result = search3.search('apple peach peach peach banana apple apple coconut',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #350 checking search results for 'apple peach peach peach banana apple apple coconut' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4660,7 +4660,7 @@ else:
 
 #Test #351 checking search results for 'pear peach peach banana' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.020204296066447348}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014718217220692251}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012712990138140453}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009597950024997432}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008433494088456893}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007776983787319279}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007669447399455294}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007444383114249996}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.00698223797987841}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.0065420636686474845}]
-result = search.search('pear peach peach banana',True)
+result = search3.search('pear peach peach banana',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #351 checking search results for 'pear peach peach banana' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4673,7 +4673,7 @@ else:
 
 #Test #352 checking search results for 'peach peach banana pear apple' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.01926967855314052}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014812496203846892}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012778192297096081}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.00968420027316346}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008397579482082217}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007741119894975234}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007711489721441988}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007527562527734298}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006790725229491}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006558209052423909}]
-result = search.search('peach peach banana pear apple',True)
+result = search3.search('peach peach banana pear apple',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #352 checking search results for 'peach peach banana pear apple' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4686,7 +4686,7 @@ else:
 
 #Test #353 checking search results for 'banana peach peach pear apple' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.01926967855314052}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014812496203846892}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012778192297096081}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.00968420027316346}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008397579482082217}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007741119894975234}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007711489721441988}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007527562527734298}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006790725229491}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006558209052423909}]
-result = search.search('banana peach peach pear apple',True)
+result = search3.search('banana peach peach pear apple',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #353 checking search results for 'banana peach peach pear apple' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4699,7 +4699,7 @@ else:
 
 #Test #354 checking search results for 'banana coconut apple apple tomato apple apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-934.html', 'title': 'N-934', 'score': 0.9998277296468217}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-424.html', 'title': 'N-424', 'score': 0.9991536635859016}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-795.html', 'title': 'N-795', 'score': 0.9970811384783727}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-481.html', 'title': 'N-481', 'score': 0.9967397706382043}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-849.html', 'title': 'N-849', 'score': 0.9964609223078084}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-266.html', 'title': 'N-266', 'score': 0.9960370532425886}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-274.html', 'title': 'N-274', 'score': 0.9958911151645455}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-704.html', 'title': 'N-704', 'score': 0.9921272628939728}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-556.html', 'title': 'N-556', 'score': 0.9858876885873906}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-430.html', 'title': 'N-430', 'score': 0.9846510668422694}]
-result = search.search('banana coconut apple apple tomato apple apple',False)
+result = search3.search('banana coconut apple apple tomato apple apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #354 checking search results for 'banana coconut apple apple tomato apple apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4712,7 +4712,7 @@ else:
 
 #Test #355 checking search results for 'peach tomato peach pear pear peach apple coconut' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.016868308596256508}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.014716060360687627}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.011749406883446563}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.009425401046128646}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008707594551530029}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.0075413814734327025}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007463944036667154}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007203993602139388}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006394449124864601}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006346801014914379}]
-result = search.search('peach tomato peach pear pear peach apple coconut',True)
+result = search3.search('peach tomato peach pear pear peach apple coconut',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #355 checking search results for 'peach tomato peach pear pear peach apple coconut' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4725,7 +4725,7 @@ else:
 
 #Test #356 checking search results for 'peach tomato apple apple peach coconut peach' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.019698403728020158}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015235626288320587}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.011737483735963039}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.010110124218535604}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.008710133071423974}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.007922113738668999}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007833501958353613}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007374412128196229}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.006816086649784637}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.00650181146347917}]
-result = search.search('peach tomato apple apple peach coconut peach',True)
+result = search3.search('peach tomato apple apple peach coconut peach',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #356 checking search results for 'peach tomato apple apple peach coconut peach' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4738,7 +4738,7 @@ else:
 
 #Test #357 checking search results for 'pear coconut peach banana peach banana banana apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-759.html', 'title': 'N-759', 'score': 1.0}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-69.html', 'title': 'N-69', 'score': 0.9952859013184676}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-348.html', 'title': 'N-348', 'score': 0.9938605200762609}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-466.html', 'title': 'N-466', 'score': 0.989665784368448}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-575.html', 'title': 'N-575', 'score': 0.9894543701511022}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-212.html', 'title': 'N-212', 'score': 0.988957376189587}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-378.html', 'title': 'N-378', 'score': 0.9884812376474816}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-79.html', 'title': 'N-79', 'score': 0.9880879108811514}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-144.html', 'title': 'N-144', 'score': 0.9873967756879894}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-485.html', 'title': 'N-485', 'score': 0.9872420850236195}]
-result = search.search('pear coconut peach banana peach banana banana apple',False)
+result = search3.search('pear coconut peach banana peach banana banana apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #357 checking search results for 'pear coconut peach banana peach banana banana apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4751,7 +4751,7 @@ else:
 
 #Test #358 checking search results for 'apple peach banana coconut tomato peach tomato' and boost = True
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-1.html', 'title': 'N-1', 'score': 0.01977398413708179}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-4.html', 'title': 'N-4', 'score': 0.015234252461753129}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-3.html', 'title': 'N-3', 'score': 0.012477270016542323}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html', 'title': 'N-0', 'score': 0.00952913704709155}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-9.html', 'title': 'N-9', 'score': 0.00841001043307151}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-12.html', 'title': 'N-12', 'score': 0.007686953303701851}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-20.html', 'title': 'N-20', 'score': 0.007640450330258488}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-15.html', 'title': 'N-15', 'score': 0.00728941866833947}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-6.html', 'title': 'N-6', 'score': 0.00673640939583809}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-42.html', 'title': 'N-42', 'score': 0.006599943708842697}]
-result = search.search('apple peach banana coconut tomato peach tomato',True)
+result = search3.search('apple peach banana coconut tomato peach tomato',True)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #358 checking search results for 'apple peach banana coconut tomato peach tomato' and boost = True\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4764,7 +4764,7 @@ else:
 
 #Test #359 checking search results for 'banana apple tomato peach apple tomato pear' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-527.html', 'title': 'N-527', 'score': 1.0000000000000002}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-716.html', 'title': 'N-716', 'score': 1.0000000000000002}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-524.html', 'title': 'N-524', 'score': 0.9999980650161844}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-133.html', 'title': 'N-133', 'score': 0.9989400211212546}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-951.html', 'title': 'N-951', 'score': 0.9986532265478112}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-273.html', 'title': 'N-273', 'score': 0.9977382351341291}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-715.html', 'title': 'N-715', 'score': 0.9970922893653976}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-610.html', 'title': 'N-610', 'score': 0.9967380196032567}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-518.html', 'title': 'N-518', 'score': 0.9967137961192949}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-217.html', 'title': 'N-217', 'score': 0.9962169438919931}]
-result = search.search('banana apple tomato peach apple tomato pear',False)
+result = search3.search('banana apple tomato peach apple tomato pear',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #359 checking search results for 'banana apple tomato peach apple tomato pear' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4777,7 +4777,7 @@ else:
 
 #Test #360 checking search results for 'banana banana peach banana pear peach apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-759.html', 'title': 'N-759', 'score': 0.9999902943127925}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-378.html', 'title': 'N-378', 'score': 0.9996611497713115}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-348.html', 'title': 'N-348', 'score': 0.9983220209117216}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-485.html', 'title': 'N-485', 'score': 0.9969501364562561}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-69.html', 'title': 'N-69', 'score': 0.9948146348135776}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-628.html', 'title': 'N-628', 'score': 0.9921366926312987}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-212.html', 'title': 'N-212', 'score': 0.9918738674617217}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-575.html', 'title': 'N-575', 'score': 0.9918583814382997}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-877.html', 'title': 'N-877', 'score': 0.9916181570569501}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-144.html', 'title': 'N-144', 'score': 0.9909462061622465}]
-result = search.search('banana banana peach banana pear peach apple',False)
+result = search3.search('banana banana peach banana pear peach apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #360 checking search results for 'banana banana peach banana pear peach apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4790,7 +4790,7 @@ else:
 
 #Test #361 checking search results for 'coconut pear coconut apple coconut banana pear tomato' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-248.html', 'title': 'N-248', 'score': 0.9986066884907351}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-750.html', 'title': 'N-750', 'score': 0.9984568890498711}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-553.html', 'title': 'N-553', 'score': 0.9969331715293914}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-841.html', 'title': 'N-841', 'score': 0.9960796990123975}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-953.html', 'title': 'N-953', 'score': 0.9945358594125793}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-353.html', 'title': 'N-353', 'score': 0.9940607904500033}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-96.html', 'title': 'N-96', 'score': 0.992144443205887}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-406.html', 'title': 'N-406', 'score': 0.9916491988348078}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-505.html', 'title': 'N-505', 'score': 0.9890603612825981}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-295.html', 'title': 'N-295', 'score': 0.9883139256615674}]
-result = search.search('coconut pear coconut apple coconut banana pear tomato',False)
+result = search3.search('coconut pear coconut apple coconut banana pear tomato',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #361 checking search results for 'coconut pear coconut apple coconut banana pear tomato' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4803,7 +4803,7 @@ else:
 
 #Test #362 checking search results for 'pear apple pear peach banana pear' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-396.html', 'title': 'N-396', 'score': 0.9890806360794886}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-875.html', 'title': 'N-875', 'score': 0.9885047264300872}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-248.html', 'title': 'N-248', 'score': 0.988366600164914}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-776.html', 'title': 'N-776', 'score': 0.9875207957747634}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-672.html', 'title': 'N-672', 'score': 0.9869511937757316}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-428.html', 'title': 'N-428', 'score': 0.986264647737246}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-473.html', 'title': 'N-473', 'score': 0.9844371577597826}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-803.html', 'title': 'N-803', 'score': 0.9838896382782824}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-48.html', 'title': 'N-48', 'score': 0.9831125929187717}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-857.html', 'title': 'N-857', 'score': 0.9820353884366378}]
-result = search.search('pear apple pear peach banana pear',False)
+result = search3.search('pear apple pear peach banana pear',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #362 checking search results for 'pear apple pear peach banana pear' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4816,7 +4816,7 @@ else:
 
 #Test #363 checking search results for 'peach pear banana apple coconut apple coconut' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-527.html', 'title': 'N-527', 'score': 1.0}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-716.html', 'title': 'N-716', 'score': 1.0}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-127.html', 'title': 'N-127', 'score': 0.996675374948493}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-524.html', 'title': 'N-524', 'score': 0.9932636919243405}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-910.html', 'title': 'N-910', 'score': 0.9930227666356}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-133.html', 'title': 'N-133', 'score': 0.9928409476216575}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-35.html', 'title': 'N-35', 'score': 0.9922674743795924}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-568.html', 'title': 'N-568', 'score': 0.9918864758328625}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-152.html', 'title': 'N-152', 'score': 0.991202782948773}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-615.html', 'title': 'N-615', 'score': 0.9908142968895922}]
-result = search.search('peach pear banana apple coconut apple coconut',False)
+result = search3.search('peach pear banana apple coconut apple coconut',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #363 checking search results for 'peach pear banana apple coconut apple coconut' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4829,7 +4829,7 @@ else:
 
 #Test #364 checking search results for 'peach pear peach peach peach pear coconut' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-694.html', 'title': 'N-694', 'score': 0.9998493931460103}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-348.html', 'title': 'N-348', 'score': 0.9983678331333925}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-80.html', 'title': 'N-80', 'score': 0.9967445819568951}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-227.html', 'title': 'N-227', 'score': 0.9951746762552424}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-681.html', 'title': 'N-681', 'score': 0.9949362781369919}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-864.html', 'title': 'N-864', 'score': 0.9938273299537139}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-31.html', 'title': 'N-31', 'score': 0.9934279787373661}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-466.html', 'title': 'N-466', 'score': 0.9928783977076031}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-253.html', 'title': 'N-253', 'score': 0.9914761411906137}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-2.html', 'title': 'N-2', 'score': 0.9913648733389263}]
-result = search.search('peach pear peach peach peach pear coconut',False)
+result = search3.search('peach pear peach peach peach pear coconut',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #364 checking search results for 'peach pear peach peach peach pear coconut' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4842,7 +4842,7 @@ else:
 
 #Test #365 checking search results for 'coconut coconut coconut apple coconut peach tomato banana' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-634.html', 'title': 'N-634', 'score': 0.9976484887093227}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-353.html', 'title': 'N-353', 'score': 0.99420387762008}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-107.html', 'title': 'N-107', 'score': 0.9938817789640704}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-628.html', 'title': 'N-628', 'score': 0.9907833009514324}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-248.html', 'title': 'N-248', 'score': 0.989865400705026}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-937.html', 'title': 'N-937', 'score': 0.9883029125480636}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-406.html', 'title': 'N-406', 'score': 0.9865610599574517}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-750.html', 'title': 'N-750', 'score': 0.978544702268064}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-647.html', 'title': 'N-647', 'score': 0.9711634178298849}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-13.html', 'title': 'N-13', 'score': 0.9701517849462036}]
-result = search.search('coconut coconut coconut apple coconut peach tomato banana',False)
+result = search3.search('coconut coconut coconut apple coconut peach tomato banana',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #365 checking search results for 'coconut coconut coconut apple coconut peach tomato banana' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4855,7 +4855,7 @@ else:
 
 #Test #366 checking search results for 'coconut peach peach banana banana peach pear' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-259.html', 'title': 'N-259', 'score': 0.9999685151065197}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-441.html', 'title': 'N-441', 'score': 0.9999685151065197}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-631.html', 'title': 'N-631', 'score': 0.9986608025596514}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-864.html', 'title': 'N-864', 'score': 0.9984039554963696}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-346.html', 'title': 'N-346', 'score': 0.9956653078504992}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-426.html', 'title': 'N-426', 'score': 0.9947261209564278}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-749.html', 'title': 'N-749', 'score': 0.9942419595124747}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-161.html', 'title': 'N-161', 'score': 0.9930203624448342}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-27.html', 'title': 'N-27', 'score': 0.9925764806741882}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-80.html', 'title': 'N-80', 'score': 0.9923491411984194}]
-result = search.search('coconut peach peach banana banana peach pear',False)
+result = search3.search('coconut peach peach banana banana peach pear',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #366 checking search results for 'coconut peach peach banana banana peach pear' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4868,7 +4868,7 @@ else:
 
 #Test #367 checking search results for 'pear tomato peach apple banana apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-524.html', 'title': 'N-524', 'score': 0.9999974862171608}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-527.html', 'title': 'N-527', 'score': 0.9999911402889735}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-716.html', 'title': 'N-716', 'score': 0.9999911402889735}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-133.html', 'title': 'N-133', 'score': 0.9990053005161372}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-951.html', 'title': 'N-951', 'score': 0.9988627723210646}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-273.html', 'title': 'N-273', 'score': 0.9978521062566298}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-715.html', 'title': 'N-715', 'score': 0.9969892912186983}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-610.html', 'title': 'N-610', 'score': 0.9968461258891129}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-518.html', 'title': 'N-518', 'score': 0.9965171043285547}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-217.html', 'title': 'N-217', 'score': 0.9964087208352386}]
-result = search.search('pear tomato peach apple banana apple',False)
+result = search3.search('pear tomato peach apple banana apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #367 checking search results for 'pear tomato peach apple banana apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4881,7 +4881,7 @@ else:
 
 #Test #368 checking search results for 'peach peach apple pear peach tomato peach' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-87.html', 'title': 'N-87', 'score': 0.9999794674898789}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-504.html', 'title': 'N-504', 'score': 0.9996888218085658}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-877.html', 'title': 'N-877', 'score': 0.9967127833705414}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-419.html', 'title': 'N-419', 'score': 0.9957886146098942}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-462.html', 'title': 'N-462', 'score': 0.9921638675130225}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-537.html', 'title': 'N-537', 'score': 0.9898668322002918}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-346.html', 'title': 'N-346', 'score': 0.9888020691176551}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-466.html', 'title': 'N-466', 'score': 0.9886935183106896}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-901.html', 'title': 'N-901', 'score': 0.9867593579782541}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-27.html', 'title': 'N-27', 'score': 0.983915375565325}]
-result = search.search('peach peach apple pear peach tomato peach',False)
+result = search3.search('peach peach apple pear peach tomato peach',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #368 checking search results for 'peach peach apple pear peach tomato peach' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4894,7 +4894,7 @@ else:
 
 #Test #369 checking search results for 'pear pear pear apple peach' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-833.html', 'title': 'N-833', 'score': 0.9998140517572579}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-811.html', 'title': 'N-811', 'score': 0.9996512195155354}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-406.html', 'title': 'N-406', 'score': 0.9995074656750155}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-857.html', 'title': 'N-857', 'score': 0.9989934385524702}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-72.html', 'title': 'N-72', 'score': 0.9978369558436115}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-214.html', 'title': 'N-214', 'score': 0.9972209227562014}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-394.html', 'title': 'N-394', 'score': 0.9945005976843668}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-37.html', 'title': 'N-37', 'score': 0.9941237286509459}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-580.html', 'title': 'N-580', 'score': 0.9932422192889235}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-248.html', 'title': 'N-248', 'score': 0.993089477521124}]
-result = search.search('pear pear pear apple peach',False)
+result = search3.search('pear pear pear apple peach',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #369 checking search results for 'pear pear pear apple peach' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4907,7 +4907,7 @@ else:
 
 #Test #370 checking search results for 'pear tomato pear coconut apple tomato pear' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-915.html', 'title': 'N-915', 'score': 0.9998495775252108}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-408.html', 'title': 'N-408', 'score': 0.9998127098535567}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-545.html', 'title': 'N-545', 'score': 0.9984942453792386}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-799.html', 'title': 'N-799', 'score': 0.9983905363690481}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-283.html', 'title': 'N-283', 'score': 0.9979370156742194}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-990.html', 'title': 'N-990', 'score': 0.9962946523859478}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-752.html', 'title': 'N-752', 'score': 0.9948123878366122}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-776.html', 'title': 'N-776', 'score': 0.9945872012968785}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-323.html', 'title': 'N-323', 'score': 0.9941105986774409}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-457.html', 'title': 'N-457', 'score': 0.9913510030899801}]
-result = search.search('pear tomato pear coconut apple tomato pear',False)
+result = search3.search('pear tomato pear coconut apple tomato pear',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #370 checking search results for 'pear tomato pear coconut apple tomato pear' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4920,7 +4920,7 @@ else:
 
 #Test #371 checking search results for 'tomato coconut pear pear peach peach banana pear' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-481.html', 'title': 'N-481', 'score': 0.9999768319726393}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-934.html', 'title': 'N-934', 'score': 0.9999559313616946}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-767.html', 'title': 'N-767', 'score': 0.9975700682468367}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-707.html', 'title': 'N-707', 'score': 0.9952781820002321}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-495.html', 'title': 'N-495', 'score': 0.9942726117144203}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-173.html', 'title': 'N-173', 'score': 0.9938502516121059}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-414.html', 'title': 'N-414', 'score': 0.9935217192426341}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-331.html', 'title': 'N-331', 'score': 0.9933111503835559}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-275.html', 'title': 'N-275', 'score': 0.992968863579922}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-990.html', 'title': 'N-990', 'score': 0.9922592879699924}]
-result = search.search('tomato coconut pear pear peach peach banana pear',False)
+result = search3.search('tomato coconut pear pear peach peach banana pear',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #371 checking search results for 'tomato coconut pear pear peach peach banana pear' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4933,7 +4933,7 @@ else:
 
 #Test #372 checking search results for 'apple tomato pear coconut coconut peach' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-76.html', 'title': 'N-76', 'score': 0.9995561228928083}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-329.html', 'title': 'N-329', 'score': 0.9988892828640841}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-105.html', 'title': 'N-105', 'score': 0.998544798942508}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-796.html', 'title': 'N-796', 'score': 0.9984716365394537}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-233.html', 'title': 'N-233', 'score': 0.9982082457219192}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-532.html', 'title': 'N-532', 'score': 0.9975431987597079}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-354.html', 'title': 'N-354', 'score': 0.9974897348595453}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-92.html', 'title': 'N-92', 'score': 0.9965178683287363}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-569.html', 'title': 'N-569', 'score': 0.9964826978198248}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-296.html', 'title': 'N-296', 'score': 0.9957016562577593}]
-result = search.search('apple tomato pear coconut coconut peach',False)
+result = search3.search('apple tomato pear coconut coconut peach',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #372 checking search results for 'apple tomato pear coconut coconut peach' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4946,7 +4946,7 @@ else:
 
 #Test #373 checking search results for 'peach apple apple apple pear tomato' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-188.html', 'title': 'N-188', 'score': 0.9999945342732718}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-570.html', 'title': 'N-570', 'score': 0.9995983884868404}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-433.html', 'title': 'N-433', 'score': 0.9994872917882923}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-748.html', 'title': 'N-748', 'score': 0.9989393514240835}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-781.html', 'title': 'N-781', 'score': 0.9984447037019377}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-375.html', 'title': 'N-375', 'score': 0.9974094630704675}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-113.html', 'title': 'N-113', 'score': 0.9969069844919712}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-518.html', 'title': 'N-518', 'score': 0.9968419415692983}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-74.html', 'title': 'N-74', 'score': 0.996476683548252}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-663.html', 'title': 'N-663', 'score': 0.9960056358567778}]
-result = search.search('peach apple apple apple pear tomato',False)
+result = search3.search('peach apple apple apple pear tomato',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #373 checking search results for 'peach apple apple apple pear tomato' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4959,7 +4959,7 @@ else:
 
 #Test #374 checking search results for 'apple banana coconut peach pear banana' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-284.html', 'title': 'N-284', 'score': 0.997212987696787}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-843.html', 'title': 'N-843', 'score': 0.9953035305484536}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-313.html', 'title': 'N-313', 'score': 0.9947717205018723}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-578.html', 'title': 'N-578', 'score': 0.9939714310517246}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-801.html', 'title': 'N-801', 'score': 0.9938180823861388}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-371.html', 'title': 'N-371', 'score': 0.9935689301516948}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-558.html', 'title': 'N-558', 'score': 0.9932007882282236}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-637.html', 'title': 'N-637', 'score': 0.993141120733607}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-599.html', 'title': 'N-599', 'score': 0.9927184689122273}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-302.html', 'title': 'N-302', 'score': 0.9923366710923358}]
-result = search.search('apple banana coconut peach pear banana',False)
+result = search3.search('apple banana coconut peach pear banana',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #374 checking search results for 'apple banana coconut peach pear banana' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4972,7 +4972,7 @@ else:
 
 #Test #375 checking search results for 'peach pear apple pear banana pear pear pear' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-473.html', 'title': 'N-473', 'score': 0.9827014229205581}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-647.html', 'title': 'N-647', 'score': 0.978180579356188}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-37.html', 'title': 'N-37', 'score': 0.9677265150499967}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-693.html', 'title': 'N-693', 'score': 0.966745007718239}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-776.html', 'title': 'N-776', 'score': 0.9643262196537744}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-875.html', 'title': 'N-875', 'score': 0.9630479823183261}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-396.html', 'title': 'N-396', 'score': 0.954497778479551}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-48.html', 'title': 'N-48', 'score': 0.951277439875455}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-248.html', 'title': 'N-248', 'score': 0.9503337329574731}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-579.html', 'title': 'N-579', 'score': 0.9480113648326042}]
-result = search.search('peach pear apple pear banana pear pear pear',False)
+result = search3.search('peach pear apple pear banana pear pear pear',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #375 checking search results for 'peach pear apple pear banana pear pear pear' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4985,7 +4985,7 @@ else:
 
 #Test #376 checking search results for 'peach apple coconut tomato pear pear pear banana' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-776.html', 'title': 'N-776', 'score': 0.9880166239372222}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-875.html', 'title': 'N-875', 'score': 0.9839284145779256}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-428.html', 'title': 'N-428', 'score': 0.9832988916377579}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-48.html', 'title': 'N-48', 'score': 0.9798181941260377}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-400.html', 'title': 'N-400', 'score': 0.9785848775932728}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-495.html', 'title': 'N-495', 'score': 0.9784274733755718}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-275.html', 'title': 'N-275', 'score': 0.9765067864552949}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-803.html', 'title': 'N-803', 'score': 0.974893756286378}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-735.html', 'title': 'N-735', 'score': 0.9746437488024118}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-283.html', 'title': 'N-283', 'score': 0.974370529372957}]
-result = search.search('peach apple coconut tomato pear pear pear banana',False)
+result = search3.search('peach apple coconut tomato pear pear pear banana',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #376 checking search results for 'peach apple coconut tomato pear pear pear banana' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -4998,7 +4998,7 @@ else:
 
 #Test #377 checking search results for 'coconut coconut coconut coconut banana apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-647.html', 'title': 'N-647', 'score': 0.999723187608747}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-634.html', 'title': 'N-634', 'score': 0.9988275322696596}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-473.html', 'title': 'N-473', 'score': 0.9975214795320999}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-353.html', 'title': 'N-353', 'score': 0.9964155825850566}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-107.html', 'title': 'N-107', 'score': 0.9961787734631828}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-86.html', 'title': 'N-86', 'score': 0.9957270343824534}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-916.html', 'title': 'N-916', 'score': 0.9938936935288144}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-750.html', 'title': 'N-750', 'score': 0.991785778285083}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-248.html', 'title': 'N-248', 'score': 0.9915855821457372}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-628.html', 'title': 'N-628', 'score': 0.9907532121231901}]
-result = search.search('coconut coconut coconut coconut banana apple',False)
+result = search3.search('coconut coconut coconut coconut banana apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #377 checking search results for 'coconut coconut coconut coconut banana apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -5011,7 +5011,7 @@ else:
 
 #Test #378 checking search results for 'coconut apple coconut pear banana coconut' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-107.html', 'title': 'N-107', 'score': 0.9999740603930147}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-634.html', 'title': 'N-634', 'score': 0.9987596426690505}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-86.html', 'title': 'N-86', 'score': 0.9966824378339574}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-796.html', 'title': 'N-796', 'score': 0.9922435993126397}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-353.html', 'title': 'N-353', 'score': 0.992169423338505}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-508.html', 'title': 'N-508', 'score': 0.9921306282529503}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-569.html', 'title': 'N-569', 'score': 0.9876319225897252}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-176.html', 'title': 'N-176', 'score': 0.9867869732487595}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-279.html', 'title': 'N-279', 'score': 0.9858958422286578}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-841.html', 'title': 'N-841', 'score': 0.9838874434370635}]
-result = search.search('coconut apple coconut pear banana coconut',False)
+result = search3.search('coconut apple coconut pear banana coconut',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #378 checking search results for 'coconut apple coconut pear banana coconut' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -5024,7 +5024,7 @@ else:
 
 #Test #379 checking search results for 'pear pear peach tomato pear apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-833.html', 'title': 'N-833', 'score': 0.9999387037593074}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-811.html', 'title': 'N-811', 'score': 0.9998343948353516}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-406.html', 'title': 'N-406', 'score': 0.9997314860627989}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-857.html', 'title': 'N-857', 'score': 0.9985913586561219}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-72.html', 'title': 'N-72', 'score': 0.9973549911672658}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-214.html', 'title': 'N-214', 'score': 0.9965754422583784}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-37.html', 'title': 'N-37', 'score': 0.9949792167853136}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-394.html', 'title': 'N-394', 'score': 0.9937438283214644}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-248.html', 'title': 'N-248', 'score': 0.9925039096730667}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-580.html', 'title': 'N-580', 'score': 0.9923232269113246}]
-result = search.search('pear pear peach tomato pear apple',False)
+result = search3.search('pear pear peach tomato pear apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #379 checking search results for 'pear pear peach tomato pear apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -5037,7 +5037,7 @@ else:
 
 #Test #380 checking search results for 'tomato coconut peach coconut banana pear coconut apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-107.html', 'title': 'N-107', 'score': 0.9999828234269146}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-634.html', 'title': 'N-634', 'score': 0.9992607840285794}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-353.html', 'title': 'N-353', 'score': 0.991938022345541}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-508.html', 'title': 'N-508', 'score': 0.9880426172513057}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-569.html', 'title': 'N-569', 'score': 0.9868620971341494}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-796.html', 'title': 'N-796', 'score': 0.9861556168025143}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-628.html', 'title': 'N-628', 'score': 0.9831656574862688}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-937.html', 'title': 'N-937', 'score': 0.9813483683360322}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-329.html', 'title': 'N-329', 'score': 0.9794519244483613}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-750.html', 'title': 'N-750', 'score': 0.978222273661371}]
-result = search.search('tomato coconut peach coconut banana pear coconut apple',False)
+result = search3.search('tomato coconut peach coconut banana pear coconut apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #380 checking search results for 'tomato coconut peach coconut banana pear coconut apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -5050,7 +5050,7 @@ else:
 
 #Test #381 checking search results for 'apple pear coconut apple apple apple' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-424.html', 'title': 'N-424', 'score': 0.9994805663306926}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-631.html', 'title': 'N-631', 'score': 0.9976363619686609}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-864.html', 'title': 'N-864', 'score': 0.9939240963007305}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-426.html', 'title': 'N-426', 'score': 0.9931680666340694}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-795.html', 'title': 'N-795', 'score': 0.9928049219001845}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-748.html', 'title': 'N-748', 'score': 0.992599003114779}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-294.html', 'title': 'N-294', 'score': 0.9901833627217341}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-70.html', 'title': 'N-70', 'score': 0.9901661324340367}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-518.html', 'title': 'N-518', 'score': 0.9890605565796662}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-556.html', 'title': 'N-556', 'score': 0.9865525231919418}]
-result = search.search('apple pear coconut apple apple apple',False)
+result = search3.search('apple pear coconut apple apple apple',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #381 checking search results for 'apple pear coconut apple apple apple' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -5063,7 +5063,7 @@ else:
 
 #Test #382 checking search results for 'pear peach peach pear pear coconut tomato banana' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-481.html', 'title': 'N-481', 'score': 0.9999768319726393}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-934.html', 'title': 'N-934', 'score': 0.9999559313616946}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-767.html', 'title': 'N-767', 'score': 0.9975700682468367}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-707.html', 'title': 'N-707', 'score': 0.9952781820002321}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-495.html', 'title': 'N-495', 'score': 0.9942726117144203}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-173.html', 'title': 'N-173', 'score': 0.993850251612106}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-414.html', 'title': 'N-414', 'score': 0.9935217192426341}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-331.html', 'title': 'N-331', 'score': 0.9933111503835559}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-275.html', 'title': 'N-275', 'score': 0.992968863579922}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-990.html', 'title': 'N-990', 'score': 0.9922592879699925}]
-result = search.search('pear peach peach pear pear coconut tomato banana',False)
+result = search3.search('pear peach peach pear pear coconut tomato banana',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #382 checking search results for 'pear peach peach pear pear coconut tomato banana' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -5076,7 +5076,7 @@ else:
 
 #Test #383 checking search results for 'banana pear peach banana pear coconut peach peach' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-142.html', 'title': 'N-142', 'score': 0.997821573482241}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-737.html', 'title': 'N-737', 'score': 0.9977776750198905}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-600.html', 'title': 'N-600', 'score': 0.9965700198063463}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-636.html', 'title': 'N-636', 'score': 0.9958427661229757}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-713.html', 'title': 'N-713', 'score': 0.9956789219225559}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-116.html', 'title': 'N-116', 'score': 0.9955362770469948}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-361.html', 'title': 'N-361', 'score': 0.9951005082379116}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-340.html', 'title': 'N-340', 'score': 0.9944460873357251}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-2.html', 'title': 'N-2', 'score': 0.9939229409026595}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-827.html', 'title': 'N-827', 'score': 0.9932161651048859}]
-result = search.search('banana pear peach banana pear coconut peach peach',False)
+result = search3.search('banana pear peach banana pear coconut peach peach',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #383 checking search results for 'banana pear peach banana pear coconut peach peach' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -5089,7 +5089,7 @@ else:
 
 #Test #384 checking search results for 'pear coconut coconut peach banana tomato' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-329.html', 'title': 'N-329', 'score': 0.9999997735308108}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-527.html', 'title': 'N-527', 'score': 0.9999911122299762}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-716.html', 'title': 'N-716', 'score': 0.9999911122299762}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-796.html', 'title': 'N-796', 'score': 0.9984408235572477}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-127.html', 'title': 'N-127', 'score': 0.9978838759671222}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-233.html', 'title': 'N-233', 'score': 0.9968537839795927}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-935.html', 'title': 'N-935', 'score': 0.9967801905024777}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-508.html', 'title': 'N-508', 'score': 0.9961522319260571}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-683.html', 'title': 'N-683', 'score': 0.9961290706538883}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-569.html', 'title': 'N-569', 'score': 0.9960927424862465}]
-result = search.search('pear coconut coconut peach banana tomato',False)
+result = search3.search('pear coconut coconut peach banana tomato',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #384 checking search results for 'pear coconut coconut peach banana tomato' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -5102,7 +5102,7 @@ else:
 
 #Test #385 checking search results for 'peach peach coconut tomato peach peach banana tomato' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-679.html', 'title': 'N-679', 'score': 0.9949662768906693}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-31.html', 'title': 'N-31', 'score': 0.9944118670929765}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-931.html', 'title': 'N-931', 'score': 0.9926041016054887}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-537.html', 'title': 'N-537', 'score': 0.988670834977421}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-462.html', 'title': 'N-462', 'score': 0.9850022029591863}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-59.html', 'title': 'N-59', 'score': 0.9813074565424516}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-853.html', 'title': 'N-853', 'score': 0.9785268691325684}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-457.html', 'title': 'N-457', 'score': 0.9780936020746295}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-863.html', 'title': 'N-863', 'score': 0.9770812439247676}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-255.html', 'title': 'N-255', 'score': 0.976070544189624}]
-result = search.search('peach peach coconut tomato peach peach banana tomato',False)
+result = search3.search('peach peach coconut tomato peach peach banana tomato',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #385 checking search results for 'peach peach coconut tomato peach peach banana tomato' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -5115,7 +5115,7 @@ else:
 
 #Test #386 checking search results for 'apple tomato pear apple peach banana' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-524.html', 'title': 'N-524', 'score': 0.9999974862171608}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-527.html', 'title': 'N-527', 'score': 0.9999911402889735}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-716.html', 'title': 'N-716', 'score': 0.9999911402889735}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-133.html', 'title': 'N-133', 'score': 0.9990053005161372}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-951.html', 'title': 'N-951', 'score': 0.9988627723210648}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-273.html', 'title': 'N-273', 'score': 0.9978521062566298}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-715.html', 'title': 'N-715', 'score': 0.9969892912186983}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-610.html', 'title': 'N-610', 'score': 0.9968461258891129}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-518.html', 'title': 'N-518', 'score': 0.9965171043285547}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-217.html', 'title': 'N-217', 'score': 0.9964087208352386}]
-result = search.search('apple tomato pear apple peach banana',False)
+result = search3.search('apple tomato pear apple peach banana',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #386 checking search results for 'apple tomato pear apple peach banana' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))
@@ -5128,7 +5128,7 @@ else:
 
 #Test #387 checking search results for 'peach tomato apple coconut pear coconut' and boost = False
 expected = [{'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-76.html', 'title': 'N-76', 'score': 0.9995561228928082}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-329.html', 'title': 'N-329', 'score': 0.9988892828640841}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-105.html', 'title': 'N-105', 'score': 0.998544798942508}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-796.html', 'title': 'N-796', 'score': 0.9984716365394537}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-233.html', 'title': 'N-233', 'score': 0.9982082457219194}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-532.html', 'title': 'N-532', 'score': 0.9975431987597079}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-354.html', 'title': 'N-354', 'score': 0.9974897348595452}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-92.html', 'title': 'N-92', 'score': 0.9965178683287363}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-569.html', 'title': 'N-569', 'score': 0.9964826978198248}, {'url': 'http://people.scs.carleton.ca/~davidmckenney/fruits/N-296.html', 'title': 'N-296', 'score': 0.9957016562577593}]
-result = search.search('peach tomato apple coconut pear coconut',False)
+result = search3.search('peach tomato apple coconut pear coconut',False)
 if not testingtools.compare_search_results(expected, result):
   output.write("Failed Test #387 checking search results for 'peach tomato apple coconut pear coconut' and boost = False\n\n")
   output.write('expected = {}\n'.format(str(expected)))

@@ -2,7 +2,7 @@
 import testingtools
 import crawler
 import searchdata
-import search
+import search3
 output = open('tinyfruits-tf-failed.txt', 'w')
 success_output = open('tinyfruits-tf-passed.txt', 'w')
 
