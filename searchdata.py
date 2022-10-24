@@ -1,7 +1,6 @@
 import math
 import os
 import json
-import crawler
 import matmult
 
 dict = json.load(open(os.path.join('crawl', "0_dict.json"), "r"))
@@ -63,7 +62,6 @@ def get_page_rank(url):
         # open file
         pageRank = json.load(open(os.path.join('crawl', "0_pageRank.json"), "r"))
         # return the corresponding pagerank value of url
-        # print("here")
         return pageRank[0][int(dict[url].split("_")[0]) - 1]
     else:
         # creating an empty adjacency  matrix
@@ -72,6 +70,7 @@ def get_page_rank(url):
         # finishing adjacency matrix
         for i in range(len(reverseDict)):
 
+            # intializing row
             row = [0.0]*len(reverseDict)
 
             # grab all the links that is linked to the current index of the matrix
@@ -101,7 +100,7 @@ def get_page_rank(url):
             adjacencyMat.insert(i, row)
 
         
-        #POWER ITERATION
+        # POWER ITERATION
         initialValue = [adjacencyMat[0]]
         
         # find matrix of prev, curr and calculate Euclidean distance
@@ -130,9 +129,11 @@ def get_page_rank(url):
 # returns the inverse document frequency of that word within the crawled pages
 def get_idf(word):
 
+    # if word wasn't found during the crawl process
     if word not in twf:
         return 0
 
+    # calculation
     temp = len(dict)/(1+twf[word])
     return math.log(temp, 2)
 
@@ -160,40 +161,14 @@ def get_tf(url, word):
 # return the tf-idf weight for the given word within the page represented by the given URL
 def get_tf_idf(url, word):
 
+    # calculate idf
     idf = get_idf(word)
 
+    # if idf is zero, answer will always be zero
     if (idf == 0):
         return 0
 
+    # calculation tf-idf value
     return math.log(1+get_tf(url, word), 2)*idf
-
-
-'''
-# test cases:
-crawler.crawl('http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html')
-
-# 2 3 4 5 6 7 8 9
-s0 = "http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"
-# 1  
-s1 = "http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-1.html"
-# 1 9 10
-s8 = "http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-8.html"
-
-# print(get_outgoing_links(s0))
-# print(get_incoming_links(s0))
-
-
-# # total kiwi : 7
-# print(get_idf("kiwi"))
-
-# # s0, coconut = 3/23
-# print(get_tf(s0, "kiwi"))
-
-# # kiwi; idf: log(10/1+7) tf: 2/23
-# print(get_tf_idf(s0, "kiwi"))
-
-# print(get_page_rank("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-3.html"))
-# print(get_page_rank("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html"))
-'''
 
 

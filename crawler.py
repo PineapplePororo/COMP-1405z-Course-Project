@@ -3,7 +3,6 @@ import os
 import json
 
 # checks if the main folder that will have all the folders from crawl is made and empty
-# void method
 def manageFolder():
     # create a folder that will contain all the files from the crawl
     if os.path.exists("crawl"):
@@ -208,16 +207,3 @@ def crawl(seed):
         json.dump(tf, outfile, indent=4, ensure_ascii=False)
     
     return count 
-
-
-# crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
-
-# def time():
-#     import time
-#     start = time.time()
-#     print(crawl('http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html'))
-#     search.search('peach apple apple apple banana peach peach banana',True)
-#     end = time.time()
-#     print(end - start)
-
-# time()
