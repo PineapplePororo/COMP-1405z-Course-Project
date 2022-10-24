@@ -11,77 +11,6 @@ reverseDict = json.load(open(os.path.join('crawl', "0_reverseDict.json"), "r"))
 # return a list of the top 10 ranked search results
 def search(phrase, boost):
 
-    # # print("PHRASE: ")
-    # # print(phrase)
-
-
-    # # store words in a list
-    # words = phrase.split(" ")
-
-    # # contains tf-idf values for all documents 
-    # docVector = []
-    
-
-    # uniqueWords = {}
-
-    # for word in words:
-    #     if(word not in docVector):
-    #         uniqueWords[word] = 1
-    #     else:
-    #         uniqueWords[word] += 1
-    
-    # for i in range(len(reverseDict)):
-        
-    #     vector = []
-
-    #     for word in uniqueWords:
-
-    #         vector.append(searchdata.get_tf_idf(reverseDict[str(i+1)], word))
-
-    #     docVector.append(vector)
-
-    # # # for all documents
-    # # for i in range(len(reverseDict)):
-    # #     # temporary storage of tfidf values of a document
-    # #     row = []
-    # #     # for words in phrase
-    # #     for j in words:
-    # #         # store the tfidf of the word 
-    # #         row.append(searchdata.get_tf_idf(reverseDict[str(i+1)], j))
-    # #     # add row 
-    # #     docVector.append(row)
-    
-    # # list that stores tf-idf value of words inputted
-
-    # # # value of tf for phrase
-    # # tf = 1/len(words)9
-    
-    # # QUERY CODE
-    # query = []
-    # sameWord = {}
-
-    # for word in words:
-    #     if word not in sameWord:
-    #         sameWord[word] = 1
-    #     else:
-    #         sameWord[word] += 1
-            
-    # for i in range(len(words)):
-    #     # tf-idf value for query
-    #     query.append(math.log(1+((uniqueWords[words[i]])/len(words)), 2)*searchdata.get_idf(words[i]))
-
-    #   # for word in words:
-    # #     if word not in sameWord:
-    # #         sameWord[word] = 1
-            
-    # # tf = len(sameWord)/len(words)
-
-    # print("QUERY")
-    # print(query)
-    # print()
-    # print("DOC VECTOR")
-    # print(docVector)
-
     # store words in a list
     words = phrase.split(" ")
 
@@ -102,16 +31,13 @@ def search(phrase, boost):
 
     for word in sameWord:
         words.append(word)
-
+    
     # print("words after: ")
     # print(words)
 
-    # print(sameWord)
-    # print("length: " + str(len(sameWord)))
-
     # contains tf-idf values for all documents 
     docVector = []
-
+    
     # idf print
     # for word in words:
     #     print(word + ": " + str(searchdata.get_idf(word)))
@@ -125,124 +51,117 @@ def search(phrase, boost):
             # print(reverseDict[str(i+1)])
             # print("j: " + j)
             # store the tfidf of the word 
-            # print("tf-idf: " + str(searchdata.get_tf_idf(reverseDict[str(i+1)], j)))
             row.append(searchdata.get_tf_idf(reverseDict[str(i+1)], j))
+            # print("tf-idf: " + str(searchdata.get_tf_idf(reverseDict[str(i+1)], j)))
         # add row 
         docVector.append(row)
-
+    
     # list that stores tf-idf value of words inputted
     query = []
 
     for i in range(len(words)):
         # tf-idf value for query
-        # print(words[i])
-        # print("idf query: " + str(searchdata.get_idf(words[i])))
-        tf = sameWord[words[i]]/total
-        # print("tf: " + str(tf))
-        # print("log: " + str(math.log(1+tf, 2)))
-        # print("all:" + str(math.log(1+tf, 2)searchdata.get_idf(words[i])))
-        query.append(math.log(1+tf, 2)*searchdata.get_idf(words[i]))
-
+        query.append(math.log(1+((sameWord[words[i]])/total), 2)*searchdata.get_idf(words[i]))
+    
     # for line in docVector:
     #     print(line)
     # print()
     # print(query)
 
     # COSINE SIMILARITY CODE
-    topSimilarity = []
-    cosMap = {}
-
-    # calculating left denominator
-    leftDenom = 0
-    for j in range(len(query)):
-        leftDenom += query[j] * query[j]
-    leftDenom = math.sqrt(leftDenom)
-
-
 
     cosSimilarity = []
+
+    leftDenom = 0
+    # Finding the left denominator sqrt(sumof[q**2])
+        
+    # left denominator calculation (same throughout the calculation)
+    for j in range(len(query)):
+        leftDenom += query[j]**2
+    leftDenom = leftDenom**0.5
+
+    # Finding the cosine similarity for each document
     for i in range(len(docVector)):
         
-        #caculating numerator
-        numerator = 0
+        # A dictionary which will store url, title and score
+        cosDict = {}
 
+        # finding the numerator
+        numerator = 0
         for j in range(len(query)):
-            numerator += query[j] * docVector[i][j]
-        
-        #calculating right denominator
+            numerator += query[j]*docVector[i][j]
+      
+        # Finding the right denominator
         rightDenom = 0
         for j in range(len(query)):
-            rightDenom += docVector[i][j]*docVector[i][j]
-        rightDenom = math.sqrt(rightDenom)
+            rightDenom += docVector[i][j]**2
+        rightDenom = rightDenom**0.5
 
-        denominator = rightDenom * leftDenom
+        # Getting the url of the cosSimilarity
+        url = searchdata.reverseDict[str(i+1)]
+        # Adding to the dictionary
+        cosDict["url"] = url
+        # addint title to the dictionary 
+        cosDict["title"] = dict[url].split("_")[1]
+        # print(cosDict["title"])
 
-        if(numerator == 0 or denominator == 0):
-                similarity = 0
+        # if any of the num or den is zero
+        if(numerator == 0 or leftDenom == 0 or rightDenom == 0):
+            # score is zero
+            cosDict["score"] = 0
         else:
-            similarity = numerator/denominator
-
+            # print("numerator: " + str(numerator))
+            # print("leftDenom: " + str(leftDenom))
+            # print("rightDenom: " + str(rightDenom))
+            # print("(numerator/(leftDenom*rightDenom)): " + str((numerator/(leftDenom*rightDenom))))
             if(boost):
-                pageRank = searchdata.get_page_rank(reverseDict[str(i+1)])
-                similarity *= pageRank
+                # if there is boost, multiply cosine similarity with page rank
+                cosDict["score"] =  searchdata.get_page_rank(url) * (numerator/(leftDenom*rightDenom))
+            else:
+                # no boost; just store score
+                cosDict["score"] = numerator/(leftDenom*rightDenom)
+            
+        # print("score: " + str(cosDict["score"]))
+
+        if(len(cosSimilarity) < 10):
+            # print("filling")
+            cosSimilarity.append(cosDict)
+
+            if (len(cosSimilarity) == 10):
+                # print("firstTen")
+                #Sort cosSimilarity (bubble sort technique)
+                for j in range(len(cosSimilarity)):
+                    # last element is already in place
+                    for k in range(len(cosSimilarity)-j-1):
+                        # if current score is smaller than k+1 score
+                        if (cosSimilarity[k]["score"] < cosSimilarity[k+1]["score"]):
+                            # switch places
+                            temp = cosSimilarity[k]
+                            cosSimilarity[k] = cosSimilarity[k+1]
+                            cosSimilarity[k+1] = temp
+        # if the last index's score of cosSimilarity is smaller than score just retrieved
+        elif(cosSimilarity[9]["score"] < cosDict["score"]):
+            # print("last index small")
+            # remove the last index
+            cosSimilarity.pop()
+
+            # append the element that was just created to cosSimilarity at the right place
+            for k in range(len(cosSimilarity)):
+                # if score that is being added is greater than current k score
+                if (cosSimilarity[k]["score"] < cosDict["score"]):
+                    # insert current score 
+                    cosSimilarity.insert(k, cosDict)
+                    break
+            
+            if (len(cosSimilarity) < 10):
+                cosSimilarity.append(cosDict)
         
-        cosSimilarity.append(similarity)
+        # print("===========================")
+        # for line in cosSimilarity:
+        #     print(line)
+        
 
-        if(similarity not in cosMap):
-            cosMap[similarity] = []
-            cosMap[similarity].append(i + 1)    
-        else:
-            cosMap[similarity].append(i+1)
-
-
-    cosSimilarity.sort(reverse=True)
-
-    # print("THIS IS THE MAP")
-    # print(cosMap)
-    # print()
-
-    #contains dictionary {url, title, score}
-    searchResult = []
-    sentResults = []
-
-    for i in range(len(cosSimilarity)):
-
-        # print(cosMap[cosSimilarity[i]])
-        # print()
-    
-        for j in cosMap[cosSimilarity[i]]:
-            # print("THIS IS SEARCH RESULTS: ")
-            # print(sentResults)
-            if(j not in sentResults):
-                # print("THIS IS J: " + str(j))        
-                url = reverseDict[str(j)]
-                title = dict[url].split("_")[1]
-                # print("TITLE: " + title)
-                score = cosSimilarity[i]
-                sentResults.append(j)
-                break
-
-        searchResult.append({"url": url, "title": title, "score": score})
-
-    # print()
-    # print(searchResult)
-
-    return searchResult[0:10]
-
-    #BUBBLE SORT OR SMTHN
-    # for i in range(1, len(cosSimilarity)):
-    #     for j in range(i, cosSimilarity):
-
-    #         curr = cosSimilarity[j]
-    #         prev = cosSimilarity[j-1]
-
-    #         currVal = curr[1]
-    #         prevVal = prev[1]
-
-    #         if(prevVal < currVal):
-    #             temp = curr
-    #             curr = prev
-    #             prev = temp
+    return cosSimilarity
     
 # crawler.crawl("http://people.scs.carleton.ca/~davidmckenney/tinyfruits/N-0.html")
 
