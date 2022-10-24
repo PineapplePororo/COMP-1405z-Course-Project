@@ -42,6 +42,18 @@ def createFiles(currentFile):
 
     return filePath
 
+def get_title(url):
+
+    # Getting the seed's title
+    for i in range(len(url) - 1, -1, -1):
+            if(url[i] == "/"):
+                lastSlash = i
+                break
+    
+    # retrieve and return  title 
+    return url[lastSlash + 1:].split(".")[0]
+
+
 def crawl(seed):
 
     # Creating a queue to contain all urls to crawl through
@@ -216,7 +228,7 @@ def crawl(seed):
 #     import time
 #     start = time.time()
 #     print(crawl('http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html'))
-#     search.search('peach apple apple apple banana peach peach banana',True)
+#     # search.search('peach apple apple apple banana peach peach banana',True)
 #     end = time.time()
 #     print(end - start)
 
