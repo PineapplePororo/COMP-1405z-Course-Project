@@ -29,7 +29,6 @@ def manageFolder():
     # for pagerank 
     open(os.path.join('crawl', "0_pageRank.json"), "w").close()
     
-
 # fuction to create the necessary folder and files
 # returns the word file path and url file path so that it could be used in crawl(seed)
 def createFiles(currentFile):
@@ -217,6 +216,7 @@ def crawl(seed):
 #     import time
 #     start = time.time()
 #     print(crawl('http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html'))
+#     search.search('peach apple apple apple banana peach peach banana',True)
 #     end = time.time()
 #     print(end - start)
 

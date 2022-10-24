@@ -1,8 +1,10 @@
-
+import time
 import testingtools
 import crawler
 import searchdata
 import search
+
+start = time.time()
 output = open('fruits-search-failed.txt', 'w')
 success_output = open('fruits-search-passed.txt', 'w')
 
@@ -1310,3 +1312,7 @@ else:
 
 output.close()
 success_output.close()
+
+end = time.time()
+
+print(end - start) 
