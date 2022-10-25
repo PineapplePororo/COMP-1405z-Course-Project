@@ -9,6 +9,8 @@ reverseDict = json.load(open(os.path.join('crawl', "0_reverseDict.json"), "r"))
 # return a list of the top 10 ranked search results
 def search(phrase, boost):
 
+    topNumber = 10
+
     # PART 1: VECTOR SPACE MODEL
     # store words in a list
     words = phrase.split(" ")
@@ -100,12 +102,12 @@ def search(phrase, boost):
                 cosDict["score"] = numerator/(leftDenom*rightDenom)
 
         # if the size of the list is smaller than 10
-        if(len(cosSimilarity) < 10):
+        if(len(cosSimilarity) < topNumber):
             # add current dict
             cosSimilarity.append(cosDict)
 
             # if the list hits 10 after adding 
-            if (len(cosSimilarity) == 10):
+            if (len(cosSimilarity) == topNumber):
 
                 # sort cosSimilarity (bubble sort technique)
                 for j in range(len(cosSimilarity)):
@@ -120,7 +122,7 @@ def search(phrase, boost):
                             cosSimilarity[k+1] = temp
 
         # if the last index's score of cosSimilarity is smaller than score just retrieved
-        elif(cosSimilarity[9]["score"] < cosDict["score"]):
+        elif(cosSimilarity[topNumber-1]["score"] < cosDict["score"]):
             # remove the last index
             cosSimilarity.pop()
 
