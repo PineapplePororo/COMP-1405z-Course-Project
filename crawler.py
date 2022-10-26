@@ -207,3 +207,5 @@ def crawl(seed):
         json.dump(tf, outfile, indent=4, ensure_ascii=False)
     
     return count 
+
+# crawl('http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html')
