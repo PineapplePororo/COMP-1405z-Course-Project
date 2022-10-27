@@ -29,7 +29,7 @@ def manageFolder():
     open(os.path.join('crawl', "0_pageRank.json"), "w").close()
     
 # fuction to create the necessary folder and files
-# returns the word file path and url file path so that it could be used in crawl(seed)
+# returns the url file path so that it could be used in crawl(seed)
 def createFiles(currentFile):
 
     # store path for the subfolder of the current file
@@ -64,10 +64,12 @@ def crawl(seed):
 
     manageFolder()
 
+    # Dictionaries to contain all the processed data
     twf = {}
     tf = {}
     incoming = {}
 
+    # Looping through the queue of URLS
     while(len(queue) >  0):  
         currUrl = queue.pop()
 
@@ -207,5 +209,3 @@ def crawl(seed):
         json.dump(tf, outfile, indent=4, ensure_ascii=False)
     
     return count 
-
-# crawl('http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html')
