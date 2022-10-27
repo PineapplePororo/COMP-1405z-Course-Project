@@ -109,7 +109,7 @@ def search(phrase, boost):
             # if the list hits 10 after adding 
             if (len(cosSimilarity) == topNumber):
 
-                # sort cosSimilarity (bubble sort technique)
+                # sort cosSimilarity (bubble sort technique) - will only run once throughout the whole code
                 for j in range(len(cosSimilarity)):
                     # last element is already in place
                     for k in range(len(cosSimilarity)-j-1):
