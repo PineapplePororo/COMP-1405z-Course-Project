@@ -29,7 +29,7 @@ def manageFolder():
     open(os.path.join('crawl', "0_pageRank.json"), "w").close()
     
 # fuction to create the necessary folder and files
-# returns the word file path and url file path so that it could be used in crawl(seed)
+# returns the url path so that it could be used in crawl(seed)
 def createFiles(currentFile):
 
     # store path for the subfolder of the current file
@@ -62,13 +62,17 @@ def crawl(seed):
     # Creating reverse dictionary to map all number to a url {number: url }
     reverseDict = {1:seed}
 
+    # Preparing the crawl folder for the web crawl to happen
     manageFolder()
 
+    # Dictionaries to store processed information
     twf = {}
     tf = {}
     incoming = {}
 
+    # Going through each url found in the queue of urls
     while(len(queue) >  0):  
+        
         currUrl = queue.pop()
 
         urlFile = createFiles(dict[currUrl])
@@ -84,13 +88,13 @@ def crawl(seed):
             #Finding the starting portion of the a-tag and the ending portion of the link
             #Using those values to extract the link itself
             start = page.find('<a href="') + 9
-            end = page.find('.html">') + 5
+            end = page.find('.html"') + 5
 
             urls += page[start:end] + " "
 
             #Replacing the tags to prevent it form being read again
             page = page.replace('href="', "", 1)
-            page = page.replace('.html">', "", 1)
+            page = page.replace('.html"', "", 1)
             page = page.replace('</a>', "", 1)
 
         urls = urls.split()
@@ -207,5 +211,3 @@ def crawl(seed):
         json.dump(tf, outfile, indent=4, ensure_ascii=False)
     
     return count 
-
-# crawl('http://people.scs.carleton.ca/~davidmckenney/fruits/N-0.html')
