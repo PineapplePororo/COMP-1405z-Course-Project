@@ -3,6 +3,7 @@ import os
 import json
 import matmult
 
+# retrieve json files
 dict = json.load(open(os.path.join('crawl', "0_dict.json"), "r"))
 reverseDict = json.load(open(os.path.join('crawl', "0_reverseDict.json"), "r"))
 incoming = json.load(open(os.path.join('crawl', "0_incoming.json"), "r"))
@@ -40,7 +41,8 @@ def get_incoming_links(url):
     # if url was not found during the crawl process
     if url not in dict:
         return None
-
+        
+    # retrieving unique number
     numberUrl = dict[url].split("_")[0]
 
     # if there is no incoming links to url
@@ -145,6 +147,7 @@ def get_tf(url, word):
     if url not in dict:
         return 0
 
+    # retrieving unique number
     key = dict[url].split("_")[0]
 
     # if the url wasn't found in the crawling process

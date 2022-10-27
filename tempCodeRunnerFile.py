@@ -1,1 +1,1 @@
-search
+crawler.crawl('http://people.scs.carleton.ca/~davidmckenney/fruits4/N-0.html')

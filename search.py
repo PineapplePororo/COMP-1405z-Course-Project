@@ -3,12 +3,14 @@ import json
 import os
 import math
 
+# retrieve json files
 dict = json.load(open(os.path.join('crawl', "0_dict.json"), "r"))
 reverseDict = json.load(open(os.path.join('crawl', "0_reverseDict.json"), "r"))
 
 # return a list of the top 10 ranked search results
 def search(phrase, boost):
 
+    # printing out top 10 results
     topNumber = 10
 
     # PART 1: VECTOR SPACE MODEL
